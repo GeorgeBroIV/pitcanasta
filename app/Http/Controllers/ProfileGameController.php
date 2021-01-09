@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProfileGame;
 use Illuminate\Http\Request;
 
-class ProfilegameController extends Controller
+class ProfileGameController extends Controller
 {
     /**
      * Display a listing of the resource.

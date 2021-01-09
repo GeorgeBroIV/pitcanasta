@@ -24,12 +24,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('avatar')->nullable();
             $table->string('password');
+            $table->boolean('visible')->default(1)->nullable(1);
             $table->boolean('active')->default(1);
             $table->text('notes')->nullable();
             $table->dateTime('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->foreignId('profilegame')->nullable();
             $table->foreignId('updated_by')->nullable();
             $table->foreignId('deleted_by')->nullable();
             $table->softDeletes();

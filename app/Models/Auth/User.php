@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Auth;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -47,11 +47,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    /* Custom User Properties
+     *   This will not be needed once I do a permissions check.
+     */
+    protected $rolesAdmin = ['Admin', 'Reviewer', 'Verified', 'Registered'];
+    protected $rolesReviewer = ['Reviewer', 'Verified', 'Registered'];
+    protected $rolesVerified = ['Verified', 'Registered'];
     
     /* Custom User Methods
      *  https://stackoverflow.com/questions/32437384/laravel-custom-user-specific-functions
      */
-    
+
+    /**
+     * Custom User Methods
+     *
+     * Use: $var = Auth()->user()->hasRole($role);
+     */
+    public function hasRole($role)
+    {
+        return $this->role == $role;
+    }
+
     /**
      * Usage: Auth()->user()->isVerified() (boolean)
      *
@@ -66,4 +82,17 @@ class User extends Authenticatable
         return $verified;
     }
     
+    /**
+     * Usage: Auth()->user()->isVisible() (boolean)
+     *
+     * @return boolean
+     */
+    public function isVisible()
+    {
+        $visible = false;
+        if($this->attributes['visible'] == 1) {
+            $visible = true;
+        }
+        return $visible;
+    }
 }
