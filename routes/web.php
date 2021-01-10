@@ -9,10 +9,10 @@
     |--------------------------------------------------------------------------
     */
     // Welcome view
-    Route::get('/', 'WelcomeController@index');
-//Route::get('/', function(){
-//    return view('welcome');
-//});
+//    Route::get('/', 'WelcomeController@index');
+Route::get('/', function(){
+    return view('welcome');
+});
     
     
     Route::get('/welcome', 'WelcomeController@index')->name('welcome');
