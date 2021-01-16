@@ -91,6 +91,10 @@
 					<div style="font-size: 25px">
 						UNDER DEVELOPMENT
 					</div>
+					<div style="font-size: 20px">
+						This website is not yet optmimized for mobile and smaller devices, and is best viewed on a
+						computer.
+					</div>
 				</div>
 				<div class="flex-center" style="text-align:left; margin: 25px">
 					Once complete this web application will host a fully functioning online multi-player canasta card
