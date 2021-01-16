@@ -63,7 +63,7 @@
             // Fires a listenable event
             event(new Registered($user));
             // Sends an e-mail verification to the user
-            $user->sendEmailVerificationNotification();
+//            $user->sendEmailVerificationNotification();
             // Redirects the user to path identified in this class's property
             return $this->registered($request, $user)
                 ?: redirect($this->redirectPath());
