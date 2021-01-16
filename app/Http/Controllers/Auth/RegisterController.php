@@ -63,7 +63,9 @@
             // Fires a listenable event
             event(new Registered($user));
             // Sends an e-mail verification to the user
-            $user->sendEmailVerificationNotification();
+// The following line was originally working pre-Laravel 8
+// However 2 verification e-mails are sent if this isn't commented out
+// $user->sendEmailVerificationNotification();
             // Redirects the user to path identified in this class's property
             return $this->registered($request, $user)
                 ?: redirect($this->redirectPath());
