@@ -28,7 +28,7 @@ class Register extends Mailable
      */
     public function build()
     {
-          https://laravel.com/docs/8.x/mail#configuration
+//          https://laravel.com/docs/8.x/mail#configuration
           return $this
               ->from('PitCanasta@PitCanasta.com')
               ->subject('Thank you for Registering with Pit Canasta')

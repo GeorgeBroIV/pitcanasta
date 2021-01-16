@@ -10,6 +10,10 @@
 				</div>
 				<div class="card-body">
 					<p>
+						Hi {{ Auth::user()->firstname }}, you are now logged into the {{ env('APP_NAME') }} web
+						application.
+					</p>
+					<p>
 						1/15/2021: The basic {{ env('APP_NAME') }} web application framework is complete
 						(security, user authentication and basic user profile information).&nbsp; The next step in
 						developing this	web application is for us to create a 'Game Profile' page where users can
@@ -30,10 +34,6 @@
 							{{ session('status') }}
 						</div>
 					@endif
-					<p>
-						Hi {{ Auth::user()->firstname }}, you are now logged into the {{ env('APP_NAME') }} web
-						application.
-					</p>
 					<p>
 						When developed, this dashboard will display real-time statistics including: total number
 						of registered users; number of currently logged-in users; chatroom statistics; new
