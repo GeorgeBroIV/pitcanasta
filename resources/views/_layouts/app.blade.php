@@ -3,7 +3,7 @@
 <head>
 	@include('_layouts.head')
 </head>
-<body width = "device-width">
+<body>
 <div id="app">
 	@include('_layouts.nav')
 	<main class="py-4">
