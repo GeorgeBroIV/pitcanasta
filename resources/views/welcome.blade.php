@@ -86,8 +86,8 @@
 			@endif
 
 			<div class="content">
+				<img src="{{ asset('storage/website/images/PitCanasta_Logo.svg') }}">
 				<div class="title m-b-md">
-					Pit Canasta
 					<div style="font-size: 25px">
 						UNDER DEVELOPMENT
 					</div>

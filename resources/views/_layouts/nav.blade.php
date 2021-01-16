@@ -3,7 +3,7 @@
 	<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 		<!-- WebApp Logo - link to homepage -->
 		<a class="navbar-brand" href="{{ url('/welcome') }}">
-			{{ config('app.name', 'Laravel') }}
+			<img src="{{ asset('storage/website/images/PitCanasta_TopLogo.svg') }}" height="50px">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon">
