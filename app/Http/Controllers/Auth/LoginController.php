@@ -3,14 +3,14 @@
     namespace App\Http\Controllers\Auth;
     
     use App\Http\Controllers\Controller;
-    use App\Models\Auth\User;
     use App\Providers\RouteServiceProvider;
     use App\Traits\SetRoleTrait;
     use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+    use Illuminate\Support\Facades\Auth;
+    
     class LoginController extends Controller
     {
-//        use SetRoleTrait;
+        use SetRoleTrait;
         /*
         |--------------------------------------------------------------------------
         | Login Controller
@@ -63,11 +63,8 @@
         public function findUsername()
         {
             $login = request()->input('login');
-
             $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-    
-            request()->merge([$fieldType=>$login]);
-
+            request()->merge([$fieldType => $login]);
             return $fieldType;
         }
         
@@ -78,7 +75,6 @@
          */
         public function username()
         {
-//ddd(request(), $this->username);
             return $this->username;
         }
     }
