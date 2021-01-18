@@ -148,13 +148,7 @@
          */
         public function roles()
         {
-            return $this
-                ->belongsToMany('App\Models\Auth\Role')
-                ->using('App\Models\Auth\RoleUser')
-                ->withPivot([
-                    'created_by',
-                    'updated_by',
-                ]);
+            return $this->belongsToMany('App\Models\Auth\Role');
         }
 
         /**
