@@ -2,6 +2,7 @@
     
     namespace App\Models\Auth;
     
+    use App\Models\Profilegame;
     use App\Traits\HasRolesAndPermissionsTrait;
     use Illuminate\Contracts\Auth\MustVerifyEmail;
     use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -154,5 +155,13 @@
                     'created_by',
                     'updated_by',
                 ]);
+        }
+
+        /**
+         * Get the Game Profile for the user.
+         */
+        public function profilegame()
+        {
+            return $this->hasMany(Profilegame::class);
         }
     }

@@ -6,7 +6,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
-						{{ $user->displayname }}'s Profile
+						{{ $user->displayname }}'s Main Profile
 					</div>
 					<div class="card-body">
 						@if (session('status'))

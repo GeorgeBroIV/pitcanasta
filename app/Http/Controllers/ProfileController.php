@@ -2,7 +2,6 @@
     
     namespace App\Http\Controllers;
     
-    use App\Http\Controllers\Controller;
     use App\Http\Requests\ProfileUpdateRequest;
     use App\Traits\HasRolesAndPermissionsTrait;
     use App\Traits\InputValidateTrait;
@@ -20,6 +19,7 @@
         {
             $this->middleware('verified');
         }
+
         /**
          * View profile view
          *

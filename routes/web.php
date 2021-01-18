@@ -65,3 +65,7 @@
     // Profile Routes
     Route::get('/profile', 'ProfileController@index')->name('profile')->middleware('verified');
     Route::post('/profile/edit', 'ProfileController@edit')->name('profile.edit')->middleware('verified');
+    
+    // Gaming Profile Routes
+    Route::get('/profilegame', 'ProfileGameController@index')->name('profilegame')->middleware('verified');
+    Route::post('/profilegame/edit', 'ProfileGameController@edit')->name('profilegame.edit')->middleware('verified');

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\ProfileGame;
+use App\Models\Profilegame;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProfilegameFactory extends Factory
@@ -12,7 +12,7 @@ class ProfilegameFactory extends Factory
      *
      * @var string
      */
-    protected $model = ProfileGame::class;
+    protected $model = Profilegame::class;
 
     /**
      * Define the model's default state.

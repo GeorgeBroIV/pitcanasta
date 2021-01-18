@@ -25,6 +25,7 @@ class CreateProfilegamesTable extends Migration
             $table->foreignId('created_by')->nullable();
             $table->foreignId('updated_by')->nullable();
             $table->softDeletes();
+
             $table->foreignId('deleted_by')->nullable();
         });
     }
