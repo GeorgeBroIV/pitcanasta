@@ -122,15 +122,14 @@
          *
          * Use: $var = Auth()->user()->hasRole($role);
          */
-        /*    public function hasRole($role)
-            {
-                return $this->role == $role;
-            }
+        public function hasRole($role)
+        {
+            return $this->role == $role;
+        }
         
-        
-            /**
-             * The Roles that belong to the permissions.
-             */
+        /**
+         * The Roles that belong to the permissions.
+         */
         public function permissions()
         {
             return $this
@@ -148,7 +147,7 @@
          */
         public function roles()
         {
-            return $this->belongsToMany('App\Models\Auth\Role');
+            return $this->hasMany(Role::class);
         }
 
         /**

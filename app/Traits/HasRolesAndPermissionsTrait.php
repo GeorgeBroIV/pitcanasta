@@ -38,6 +38,7 @@
          * @return bool
          */
         public function hasRole(... $roles ) {
+ddd($roles);
             foreach ($roles as $role) {
                 if ($this->roles->contains('slug', $role)) {
                     return true;

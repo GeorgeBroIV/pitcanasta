@@ -28,12 +28,6 @@ class Role extends Model
      */
     public function users()
     {
-        return $this
-            ->belongsToMany('App\Models\Auth\User')
-            ->using('App\Models\Auth\RoleUser')
-            ->withPivot([
-                'created_by',
-                'updated_by',
-            ]);
+        return $this->belongsToMany(User::class);
     }
 }

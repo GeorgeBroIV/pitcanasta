@@ -119,10 +119,12 @@
 									</form>
 									<hr>
 									<p>
-										* Note that the 'Display Name' is for the {{ env('APP_NAME') }} web application framework
-										and not for any Social Provider or Game Profile display name.&nbsp; It is recommended to use
-										your regular nick name for this value.&nbsp; Once you are registered within this system
-										you'll have the ability to create custom game id's for the gaming tables, message boards and chat rooms.
+										* Note that the 'Display Name' is for the {{ env('APP_NAME') }} web
+										application framework and not for any 'Social Providers' or 'Game Table
+										Profiles' display names.&nbsp; It is recommended to use your regular nick name
+										for this value.&nbsp; Once you are registered within this system you'll have
+										the ability to create custom Game Table id's for the gaming tables, message
+										boards and chat rooms.
 									</p>
 								</div>
 							</div>
