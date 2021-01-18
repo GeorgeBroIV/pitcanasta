@@ -3,19 +3,8 @@
     
     namespace App\Traits;
     
-    use App\Models\Auth\Role;
-//    use App\Models\Auth\Permission;
-    
-    trait HasRolesAndPermissionsTrait
+    trait RolesTrait
     {
-        /**
-         * @return mixed
-         */
-        public function roles()
-        {
-            return $this->belongsToMany(Role::class,'role_user');
-        }
-        
         /**
          * @param string
          * @return array
@@ -38,15 +27,15 @@
          * @return bool
          */
         public function hasRole(... $roles ) {
-ddd($roles);
+
             foreach ($roles as $role) {
-                if ($this->roles->contains('slug', $role)) {
+                if ($this->roles->contains('name', $role)) {
                     return true;
                 }
             }
             return false;
         }
-        
+
         /**
          * @param $permission
          * @return bool

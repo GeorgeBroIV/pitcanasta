@@ -10,24 +10,10 @@ class Role extends Model
     use HasFactory;
     
     /**
-     * The Roles that belong to the permissions.
-     */
-//    public function permissions()
-//    {
-//        return $this
-//            ->belongsToMany('App\Models\Auth\Permission')
-//            ->using('App\Models\Auth\PermissionRole')
-//            ->withPivot([
-//                'created_by',
-//                'updated_by',
-//            ]);
-//    }
-    
-    /**
-     * The Roles that belong to the permissions.
+     * The Roles that belong to Users.
      */
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'role_user', 'role_id', 'user_id');
     }
 }

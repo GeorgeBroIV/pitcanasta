@@ -6,14 +6,14 @@ use App\Http\Requests\ProfileGameUpdateRequest;
 use App\Models\Profilegame;
 use Illuminate\Http\Request;
 
-use App\Traits\HasRolesAndPermissionsTrait;
+use App\Traits\RolesTrait;
 use App\Traits\InputValidateTrait;
 use App\Traits\UploadTrait;
 use Illuminate\Http\RedirectResponse;
 
 class ProfileGameController extends Controller
 {
-    use UploadTrait, InputValidateTrait, HasRolesAndPermissionsTrait;
+    use UploadTrait, InputValidateTrait, RolesTrait;
     
     /**
      * Authenticate via middleware

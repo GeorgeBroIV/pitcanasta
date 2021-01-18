@@ -15,34 +15,34 @@
 			<!-- START - Left Side Of Navbar -->
 			<!-- START - Registered Section -->
 			<ul class="navbar-nav mr-auto">
-			@auth
-				<!-- Home -->
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('home') }}">
-							{{ __('Home') }}
-						</a>
-					</li>
-					<!-- END Home -->
-					<!-- Dashboard -->
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('dashboard') }}">
-							{{ __('Dashboard') }}
-						</a>
-					</li>
-					<!-- END Dashboard -->
-			@endauth
-			<!-- END - Registered Section -->
-				<!-- START - Admin Section -->
-			@isAdmin
-			<!-- START - Users -->
-				<!-- TODO: Implement Users and remove space between mustache braces
-										<li>
-											<a class="nav-link" href="{ { route('users.index') } }">
-												{ { __('Users') } }
-											</a>
-										</li>
-				-->
-				<!-- END Users -->
+				@auth
+					<!-- Home -->
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('home') }}">
+								{{ __('Home') }}
+							</a>
+						</li>
+						<!-- END Home -->
+						<!-- Dashboard -->
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('dashboard') }}">
+								{{ __('Dashboard') }}
+							</a>
+						</li>
+						<!-- END Dashboard -->
+				@endauth
+				<!-- END - Registered Section -->
+					<!-- START - Admin Section -->
+				@isAdmin
+				<!-- START - Users -->
+					<!-- TODO: Implement Users and remove space between mustache braces
+											<li>
+												<a class="nav-link" href="{ { route('users.index') } }">
+													{ { __('Users') } }
+												</a>
+											</li>
+					-->
+					<!-- END Users -->
 				@endisAdmin
 			</ul>
 			<!-- END - Admin Section -->

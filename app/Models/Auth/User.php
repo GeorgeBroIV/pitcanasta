@@ -3,7 +3,7 @@
     namespace App\Models\Auth;
     
     use App\Models\Profilegame;
-    use App\Traits\HasRolesAndPermissionsTrait;
+    use App\Traits\RolesTrait;
     use Illuminate\Contracts\Auth\MustVerifyEmail;
     use Illuminate\Foundation\Auth\User as Authenticatable;
     use Illuminate\Notifications\Notifiable;
@@ -11,7 +11,7 @@
     class User extends Authenticatable implements MustVerifyEmail
         // Authenticatable extends model, so no need to extend model and authenticatable
     {
-        use Notifiable, HasRolesAndPermissionsTrait;
+        use Notifiable, RolesTrait;
         
         /**
          * The attributes that are mass assignable.
@@ -27,6 +27,7 @@
             'avatar',
             'password',
             'visible',
+            'active',
             'active',
             'notes',
         ];
@@ -50,16 +51,23 @@
             'email_verified_at' => 'datetime',
         ];
         
-        /* Custom User Properties
-         *   This will not be needed once I do a permissions check.
-         */
-        protected $rolesAdmin = ['Admin', 'Reviewer', 'Verified', 'Registered'];
-        protected $rolesReviewer = ['Reviewer', 'Verified', 'Registered'];
-        protected $rolesVerified = ['Verified', 'Registered'];
-        
         /* Custom User Methods
          *  https://stackoverflow.com/questions/32437384/laravel-custom-user-specific-functions
          */
+    
+        /**
+         * Usage: Auth()->user()->isActive() (boolean)
+         *
+         * @return boolean
+         */
+        public function isActive()
+        {
+            $active = false;
+            if($this->attributes['active'] == 1) {
+                $active = true;
+            }
+            return $active;
+        }
         
         /**
          * Usage: Auth()->user()->isVisible() (boolean)
@@ -76,82 +84,15 @@
         }
         
         /**
-         * Usage: Auth()->user()->isVerified() (boolean)
-         *
-         * @return boolean
-         */
-        public function isVerified()
-        {
-            $verified = false;
-            if(isset($this->attributes['email_verified_at'])) {
-                $verified = true;
-            }
-            return $verified;
-        }
-        
-        /**
-         * Usage: Auth()->user()->isReviewer() (boolean)
-         *
-         * @return boolean
-         */
-        public function isReviewer()
-        {
-            $reviewer = false;
-            if(in_array($this->attributes['role'],$this->rolesReviewer)) {
-                $reviewer = true;
-            }
-            return $reviewer;
-        }
-        
-        /**
-         * Usage: Auth()->user()->isAdmin() (boolean)
-         *
-         * @return boolean
-         */
-        public function isAdmin()
-        {
-            $admin = false;
-            if(in_array($this->attributes['role'], $this->rolesAdmin)) {
-                $admin = true;
-            }
-            return $admin;
-        }
-        
-        /**
-         * Custom User Methods
-         *
-         * Use: $var = Auth()->user()->hasRole($role);
-         */
-        public function hasRole($role)
-        {
-            return $this->role == $role;
-        }
-        
-        /**
-         * The Roles that belong to the permissions.
-         */
-        public function permissions()
-        {
-            return $this
-                ->belongsToMany('App\Models\Auth\Permission')
-                ->using('App\Models\Auth\PermissionUser')
-                ->with('roles')
-                ->withPivot([
-                    'created_by',
-                    'updated_by',
-                ]);
-        }
-        
-        /**
-         * The Roles that belong to the permissions.
+         * The Users that belong to Roles.
          */
         public function roles()
         {
-            return $this->hasMany(Role::class);
+            return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
         }
 
         /**
-         * Get the Game Profile for the user.
+         * The Users that have Game Profiles.
          */
         public function profilegame()
         {
