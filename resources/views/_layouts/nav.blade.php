@@ -23,6 +23,13 @@
 						</a>
 					</li>
 					<!-- END Home -->
+					<!-- Dashboard -->
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('dashboard') }}">
+							{{ __('Dashboard') }}
+						</a>
+					</li>
+					<!-- END Dashboard -->
 			@endauth
 			<!-- END - Registered Section -->
 				<!-- START - Admin Section -->
