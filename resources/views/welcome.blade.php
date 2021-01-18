@@ -9,7 +9,9 @@
 						<div class="flex-center position-ref full-height">
 							<div class="content">
 								<div>
-									<img class="card-img" src="{{ asset('storage/website/images/PitCanasta_Logo.svg') }}">
+									<a href="{{ route('home') }}">
+										<img class="card-img" src="{{ asset('storage/website/images/PitCanasta_Logo.svg') }}">
+									</a>
 								</div>
 								<div class="title m-b-md">
 									<div style="font-size: 25px; margin-top: 10px; margin-bottom: 10px" align="center">

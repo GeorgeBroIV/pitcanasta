@@ -146,8 +146,8 @@
                             If you have any questions or suggestions about
                             our Terms and Conditions, do not hesitate to
                             contact us at
-                            <a href="mailto:Info@PitCanasta.com">
-                                Info@PitCanasta.com
+                            <a href="mailto:Webmaster@PitCanasta.com">
+                                Webmaster@PitCanasta.com
                             </a>
                         </p>
                     </div>
