@@ -5,7 +5,9 @@
 </head>
 <body>
 <div id="app">
-	@include('_layouts.nav')
+	@if (Route::current()->getName() != 'welcome')
+		@include('_layouts.nav')
+	@endif
 	<main class="py-4">
 		@yield('content')
 	</main>

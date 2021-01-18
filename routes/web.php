@@ -9,8 +9,9 @@
     |--------------------------------------------------------------------------
     */
     // Welcome view
-    Route::get('/', 'WelcomeController@index');
-
+    Route::get('/', function() {
+        return redirect('/welcome');
+    });
     Route::get('/welcome', 'WelcomeController@index')->name('welcome');
 
     // WebApp Privacy Policy and Terms of Service
