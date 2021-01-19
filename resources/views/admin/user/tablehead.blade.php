@@ -17,6 +17,8 @@
 	<th style="padding-left: 10px; padding-right: 10px">
 		Verified
 	</th>
+
+	<!-- START - Roles -->
 	@if (Route::current()->getName() != 'users.index')
 		<th align="center" style="padding-left: 10px; padding-right: 10px">
 			Active
@@ -30,9 +32,11 @@
 			</th>
         @endforeach
 	@endif
-	
-	@if (Route::current()->getName() != 'users.edit')<th align="center" style="padding-left: 10px; padding-right: 10px">
-        Action
+	<!-- END - Roles -->
+
+	@if (Route::current()->getName() != 'users.edit')
+		<th align="center" style="padding-left: 10px; padding-right: 10px">
+            Action
+		</th>
 	@endif
-    </th>
 </tr>

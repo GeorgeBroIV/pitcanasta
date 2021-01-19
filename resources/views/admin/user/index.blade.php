@@ -42,25 +42,6 @@
 				                                No
 			                                @endif
 	                                    </td>
-    <!--
-                                        at_for($i = 0; $i < count($roles); $i++)
-                                            <td align="center" style="padding-left: 5px; padding-right: 5px">
-                                                at_if(in_array($roles[$i]->name, $userRoles[$loop->index]))
-                                                    at_if($roles[$i]->active == 1)
-                                                        <input type="checkbox" id="" name="" value="" checked>
-                                                    at_elseif($roles[$i]->active == 0)
-                                                        <input type="checkbox" id="" name="" value="" disabled>
-                                                    at_endif
-                                                at_else
-                                                    at_if($roles[$i]->active == 1)
-                                                        <input type="checkbox" id="" name="" value="">
-                                                    at_elseif($roles[$i]->active == 0)
-                                                        <input type="checkbox" id="" name="" value="" disabled>
-                                                    at_endif
-                                                at_endif
-                                            </td>
-                                        at_endfor
-    -->
                                         <td align="center">
 	                                        <a class="btn btn-link" href="{{ route('users.edit', $user->id) }}">Edit</a>
                                         </td>

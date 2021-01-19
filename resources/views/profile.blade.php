@@ -132,6 +132,9 @@
 													Save Profile Changes
 												</button>
 												<a href="{{ route('profile') }}" class="btn btn-secondary">
+													Undo Changes
+												</a>
+												<a href="{{ route('home') }}" class="btn btn-secondary">
 													Cancel
 												</a>
 											</div>
