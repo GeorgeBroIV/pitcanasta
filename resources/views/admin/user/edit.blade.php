@@ -29,6 +29,9 @@
                                             {{ $user->lastname }}
                                         </td>
 	                                    <td style="padding: 10px">
+		                                    {{ $user->displayname }}
+	                                    </td>
+	                                    <td style="padding: 10px">
                                             {{ $user->email }}
                                         </td>
 	                                    <td style="padding-left: 10px; padding-right: 10px" align="center">

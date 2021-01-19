@@ -9,6 +9,9 @@
 		Last Name
 	</th>
 	<th style="padding-left: 10px; padding-right: 10px">
+		Display Name
+	</th>
+	<th style="padding-left: 10px; padding-right: 10px">
 		E-mail
 	</th>
 	<th style="padding-left: 10px; padding-right: 10px">
