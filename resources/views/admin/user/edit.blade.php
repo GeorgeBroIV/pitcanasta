@@ -31,15 +31,22 @@
 	                                    <td style="padding: 10px">
                                             {{ $user->email }}
                                         </td>
+	                                    <td style="padding-left: 10px; padding-right: 10px" align="center">
+		                                    @if($user->hasVerifiedEmail())
+			                                    Yes
+		                                    @else
+			                                    No
+		                                    @endif
+	                                    </td>
 	                                    <td align="center" style="padding: 10px">
-                                            @if($user->active == 1)
+                                            @if($user->active)
 		                                        <input type="checkbox" id="" name="" value="" checked>
                                             @else
 		                                        <input type="checkbox" id="" name="" value="">
                                             @endif
                                         </td>
 	                                    <td align="center" style="padding: 10px">
-	                                        @if($user->visible == 1)
+	                                        @if($user->visible)
 		                                        <input type="checkbox" id="" name="" value="" checked>
 	                                        @else
 		                                        <input type="checkbox" id="" name="" value="">
@@ -47,19 +54,23 @@
                                         </td>
                                         @for($i = 0; $i < count($roles); $i++)
 		                                    <td align="center" style="padding: 10px">
-		                                        @if(in_array($roles[$i]->name, $userRoles))
-			                                        @if($roles[$i]->active == 1)
-				                                        <input type="checkbox" id="" name="" value="" checked>
-			                                        @elseif($roles[$i]->active == 0)
-				                                        <input type="checkbox" id="" name="" value="" disabled>
+			                                    @if($user->hasVerifiedEmail())
+				                                    @if(in_array($roles[$i]->name, $userRoles))
+				                                        @if($roles[$i]->active)
+					                                        <input type="checkbox" id="" name="" value="" checked>
+				                                        @else
+					                                        <input type="checkbox" id="" name="" value="" disabled>
+				                                        @endif
+			                                        @else
+				                                        @if($roles[$i]->active)
+					                                        <input type="checkbox" id="" name="" value="">
+				                                        @else
+					                                        <input type="checkbox" id="" name="" value="" disabled>
+				                                        @endif
 			                                        @endif
-		                                        @else
-			                                        @if($roles[$i]->active == 1)
-				                                        <input type="checkbox" id="" name="" value="">
-			                                        @elseif($roles[$i]->active == 0)
-				                                        <input type="checkbox" id="" name="" value="" disabled>
-			                                        @endif
-		                                        @endif
+			                                    @else
+			                                        -
+												@endif
 	                                        </td>
                                         @endfor
                                     </tr>

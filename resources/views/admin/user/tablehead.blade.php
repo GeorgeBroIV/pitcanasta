@@ -11,6 +11,9 @@
 	<th style="padding-left: 10px; padding-right: 10px">
 		E-mail
 	</th>
+	<th style="padding-left: 10px; padding-right: 10px">
+		Verified
+	</th>
 	@if (Route::current()->getName() != 'users.index')
 		<th align="center" style="padding-left: 10px; padding-right: 10px">
 			Active

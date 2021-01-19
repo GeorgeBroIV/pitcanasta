@@ -32,67 +32,89 @@
 										</div>
 									@endif
 									<form action="{{ route('profile.edit') }}" method="POST" role="form" enctype="multipart/form-data">
-									@csrf
-									<!-- User Name (disabled) -->
+										@csrf
+										<!-- START - User Name (disabled) -->
 										<!-- TODO Add Ability to Change User Name, with validation constraints -->
 										<div class="form-group row">
-											<label for="username" class="col-md-4 col-form-label text-md-right">User Name</label>
+											<label for="username" class="col-md-4 col-form-label text-md-right">
+												User Name
+											</label>
 											<div class="col-md-6">
 												<input id="username" type="text" class="form-control" name="username" value="{{ old('username', $user->username) }}" disabled>
 											</div>
 										</div>
-										<!-- END User Name -->
-										<!-- E-mail (disabled) -->
+										<!-- END  -User Name -->
+										<!-- START - E-mail (disabled) -->
 										<!-- TODO Add Ability to Change E-mail, with validation constraints (including unique), delete 'e-mail verified', change 'role', and once verified change 'role' to previous -->
 										<div class="form-group row">
-											<label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+											<label for="email" class="col-md-4 col-form-label text-md-right">
+												Email
+											</label>
 											<div class="col-md-6">
 												<input id="email" type="text" class="form-control" name="email" value="{{ old('email', $user->email) }}" disabled>
 											</div>
 										</div>
-										<!-- END E-mail -->
-										<!-- First Name -->
+										<!-- END - E-mail -->
+										<!-- START - First Name -->
 										<div class="form-group row">
-											<label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
+											<label for="firstname" class="col-md-4 col-form-label text-md-right">
+												First Name
+											</label>
 											<div class="col-md-6">
 												<input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname', $user->firstname) }}" autofocus>
 											</div>
 										</div>
 										<!-- END First Name -->
-										<!-- Last Name -->
+										<!-- START - Last Name -->
 										<div class="form-group row">
-											<label for="lastname" class="col-md-4 col-form-label text-md-right">Last Name</label>
+											<label for="lastname" class="col-md-4 col-form-label text-md-right">
+												Last Name
+											</label>
 											<div class="col-md-6">
 												<input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname', $user->lastname) }}">
 											</div>
 										</div>
-										<!-- END Last Name -->
-										<!-- Display Name -->
+										<!-- END - Last Name -->
+										<!-- START - Display Name -->
 										<div class="form-group row">
-											<label for="displayname" class="col-md-4 col-form-label
-											text-md-right">* Display Name</label>
+											<label for="displayname" class="col-md-4 col-form-label text-md-right">
+												* Display Name
+											</label>
 											<div class="col-md-6">
 												<input id="displayname" type="text" class="form-control" name="displayname" value="{{ old('displayname', $user->displayname) }}">
 											</div>
 										</div>
-										<!-- END Display Name -->
-										<!-- Avatar -->
+										<!-- END - Display Name -->
+										<!-- START - Visible -->
+										<div class="form-group row">
+											<label for="visible" class="col-md-4 col-form-label text-md-right">
+												Visible
+											</label>
+											<div class="col-md-6">
+												@if($user->visible = 1)
+													<input type="checkbox" id="" name="" value="" checked>
+												@else
+													<input type="checkbox" id="" name="" value="">
+												@endif
+											</div>
+										</div>
+										<!-- END - Visible -->
+										<!-- START - Avatar -->
 										<div class="form-group row">
 											@if ($user->avatar)
 												<div class="col-md-4 text-md-right">
 													<img src="{{ asset('storage/'.$user->avatar) }}" style="width: 40px; height: 40px; border-radius: 50%">
 												</div>
 												<span class="col-md-6" style="vertical-align: center">
-                                                        <label for="avatar" style="cursor: pointer" class="btn btn-dark">
-                                                            Change
-                                                        </label>
-                                                        <input id="avatar" type="file" class="form-control" name="avatar" style="visibility: hidden; opacity: 0; position: absolute; z-index: -1">
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <label for="avatarDelete">
-                                                            Delete
-                                                        </label>
-                                                        <input id="avatarDelete" name="avatarDelete" type="checkbox">
-                                                    </span>
+			                                        <label for="avatar" style="cursor: pointer" class="btn btn-dark">
+				                                        Change
+			                                        </label>
+			                                        <input id="avatar" type="file" class="form-control" name="avatar" style="visibility: hidden; opacity: 0; position: absolute; z-index: -1">
+			                                        <label for="avatarDelete">
+				                                        Delete
+			                                        </label>
+													<input id="avatarDelete" name="avatarDelete" type="checkbox">
+	                                            </span>
 											@else
 												<label for="avatar" class="col-md-4 col-form-label text-md-right">
 													Avatar
@@ -102,20 +124,19 @@
 												</div>
 											@endif
 										</div>
-										<!-- END Avatar -->
-										<!-- Submit or Cancel -->
+										<!-- END - Avatar -->
+										<!-- START - Form Buttons -->
 										<div class="form-group row mb-0 mt-5">
 											<div class="col-md-8 offset-md-4">
 												<button type="submit" class="btn btn-primary">
 													Save Profile Changes
 												</button>
-												&nbsp;&nbsp;&nbsp;
 												<a href="{{ route('profile') }}" class="btn btn-secondary">
 													Cancel
 												</a>
 											</div>
 										</div>
-										<!-- END Submit or Cancel -->
+										<!-- END - Form Buttons -->
 									</form>
 									<hr>
 									<p>

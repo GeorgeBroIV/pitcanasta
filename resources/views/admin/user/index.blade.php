@@ -32,6 +32,13 @@
                                         <td style="padding-left: 10px; padding-right: 10px">
                                             {{ $user->email }}
                                         </td>
+	                                    <td style="padding-left: 10px; padding-right: 10px" align="center">
+		                                    @if($user->hasVerifiedEmail())
+			                                    Yes
+			                                @else
+				                                No
+			                                @endif
+	                                    </td>
     <!--
                                         at_for($i = 0; $i < count($roles); $i++)
                                             <td align="center" style="padding-left: 5px; padding-right: 5px">
