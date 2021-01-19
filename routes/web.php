@@ -69,3 +69,29 @@
     // Gaming Profile Routes
     Route::get('/profilegame', 'ProfileGameController@index')->name('profilegame')->middleware('verified');
     Route::post('/profilegame/edit', 'ProfileGameController@edit')->name('profilegame.edit')->middleware('verified');
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Admin routes
+    |--------------------------------------------------------------------------
+    */
+    
+    /*  Laravel custom middleware (https://laravel.com/docs/8.x/middleware)
+        Usage: ->middleware('role:ROLE'); where ROLE is:
+
+            SuperUser
+            Developer
+            Admin
+            Reviewer
+        E.g. Route::get('/protected', 'EXAMPLEController@index')->name('example')->middleware('role:SuperUser');
+
+        Or you can assign middleware to controller's constructor (helpful for resource routes)
+        https://laravel.com/docs/8.x/controllers#controller-middleware
+
+        Resource Routes
+        https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
+     */
+
+    // Admin 'User' Routes
+    // Middleware ALSO applied to Controller
+    Route::resource('/admin/users', 'Admin\UserController')->middleware('role:Admin');
