@@ -91,10 +91,10 @@
 												Visible
 											</label>
 											<div class="col-md-6">
-												@if($user->visible = 1)
-													<input type="checkbox" id="" name="" value="" checked>
+												@if(isset($user->visible) && $user->visible)
+													<input type="checkbox" id="visible" name="visible" value=1 checked>
 												@else
-													<input type="checkbox" id="" name="" value="">
+													<input type="checkbox" id="visible" name="visible" value=1>
 												@endif
 											</div>
 										</div>

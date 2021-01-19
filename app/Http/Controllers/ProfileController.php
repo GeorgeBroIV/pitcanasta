@@ -62,6 +62,16 @@
             if($request->displayname  != $user->displayname) {
                 $user->displayname = $request->displayname;
             }
+    
+            /* Visible */
+            // If user changes visibility (i.e. different than what is stored in database)
+            if(!isset($request->visible)) {
+                $request->visible = 0;
+            }
+
+            if($request->visible  != $user->visible) {
+                $user->visible = $request->visible;
+            }
             
             /* Avatar */
             // If user deletes avatar (i.e. different than what is stored in database)
