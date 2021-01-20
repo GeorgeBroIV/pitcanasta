@@ -80,6 +80,14 @@
 	                                @endforeach
 	                            </table>
 	                        </form>
+		                    <br>
+		                    <div class="text-body" style="padding-bottom: 5px">
+			                    Protected - 'User Role' can only be modified by users who have 'Developer' privileges.
+		                    </div>
+		                    <div class="text-danger">
+			                    Note that deleting a 'User Role' will remove that privilege for all Users.&nbsp;
+			                    Consider making the 'User Role' inactive as an alternative.
+		                    </div>
 	                    </div>
 	                </div>
 	            </div>
