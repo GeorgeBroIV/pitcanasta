@@ -6,8 +6,6 @@
     use App\Models\Auth\User;
     use App\Traits\RolesTrait;
     use Illuminate\Http\Request;
-    use Illuminate\Support\Arr;
-    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\DB;
     
     /**
@@ -20,7 +18,7 @@
      * StackOverflow: https://stackoverflow.com/users/13029167/george-brotherston
      * Github: https://github.com/GeorgeBroIV
      *
-     * This controller handles routed HTTP requests for the 'users' models, and returns
+     * This controller handles routed HTTP requests for the 'User' model, and returns
      * associated views based on the application logic contained herein (MVC paradigm).
      **/
     
@@ -30,9 +28,10 @@
         
         /**
          * Controller Constructor
-         *   - applies middleware
          */
         public function __construct() {
+            // Applies custom middleware 'EnsureUserHasRole'
+            // Role parameter values in 'name' field in 'roles' table
             // Middleware ALSO applied to route
             $this->middleware('role:Admin');
         }

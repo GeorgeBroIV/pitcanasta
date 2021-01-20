@@ -78,7 +78,6 @@
     
     /*  Laravel custom middleware (https://laravel.com/docs/8.x/middleware)
         Usage: ->middleware('role:ROLE'); where ROLE is:
-
             SuperUser
             Developer
             Admin
@@ -95,3 +94,6 @@
     // Admin 'User' Routes
     // Middleware ALSO applied to Controller
     Route::resource('/admin/users', 'Admin\UserController')->middleware('role:Admin');
+    Route::resource('/admin/roles', 'Admin\RoleController')->middleware('role:Admin');
+    // Forced route to call 'Destroy' from href (which only has 'GET' form method instead of required 'DELETE' method
+    Route::get('/admin/roles/delete/{id}', ['as' => 'roles.delete', 'uses' => 'Admin\RoleController@destroy'])->middleware('role:Admin');

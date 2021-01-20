@@ -28,7 +28,6 @@
             'password',
             'visible',
             'active',
-            'active',
             'notes',
         ];
         protected $guarded = ['*'];

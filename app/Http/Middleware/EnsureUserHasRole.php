@@ -22,7 +22,7 @@ class EnsureUserHasRole
 {
     use RolesTrait;
     /**
-     * Handle an incoming request.
+     * Handle an incoming request and apply middleware 'hasRole()' (in RolesTrait)
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  string  $role

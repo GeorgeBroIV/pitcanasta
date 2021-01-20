@@ -33,9 +33,14 @@
         {
             return true;
         }
-        
+    
         /**
-         * Input fields to undergo validation checks (modify as applicable).
+         * The model this Request Validation uses.
+         */
+        public $model = "User";
+    
+        /**
+         * The model's input fields to undergo validation checks (modify as applicable).
          */
         public $fields = [
             'firstname',
@@ -52,7 +57,7 @@
         public function rules()
         {
             // Laravel Validation Rule-based Messages
-            $rules = $this->ValidationInputRules($this->fields);
+            $rules = $this->ValidationInputRules($this->model, $this->fields);
             return $rules;
         }
         
@@ -64,7 +69,7 @@
         public function messages()
         {
             // Laravel Validation Rule-based Messages
-            $messages = $this->ValidationOutputMessages($this->fields);
+            $messages = $this->ValidationOutputMessages($this->model, $this->fields);
             return $messages;
         }
         
@@ -76,7 +81,7 @@
         public function filters()
         {
             // Sanitizes field values
-            $sanitizes = $this->FieldSanitize($this->fields);
+            $sanitizes = $this->FieldSanitize($this->model, $this->fields);
             return $sanitizes;
         }
     }

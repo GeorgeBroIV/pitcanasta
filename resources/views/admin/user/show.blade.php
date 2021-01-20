@@ -5,8 +5,11 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-auto">
+				<div style="font-size: x-large; padding-bottom: 10px; text-align: center">
+					Website Administration Subsite
+				</div>
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header" style="font-size: medium">
 						Show {{ $user->username }}'s Settings
 					</div>
 					<div class="card-body">

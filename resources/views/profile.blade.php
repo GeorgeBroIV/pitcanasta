@@ -5,7 +5,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-12">
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header" style="font-size: medium">
 						{{ $user->displayname }}'s Main Profile
 					</div>
 					<div class="card-body">
@@ -31,7 +31,8 @@
 											</ul>
 										</div>
 									@endif
-									<form action="{{ route('profile.edit') }}" method="POST" role="form" enctype="multipart/form-data">
+									<form action="{{ route('profile.edit') }}" method="POST" role="form"
+									      enctype="multipart/form-data">
 										@csrf
 										<!-- START - User Name (disabled) -->
 										<!-- TODO Add Ability to Change User Name, with validation constraints -->
@@ -90,12 +91,16 @@
 											<label for="visible" class="col-md-4 col-form-label text-md-right">
 												Visible
 											</label>
-											<div class="col-md-6">
-												@if(isset($user->visible) && $user->visible)
-													<input type="checkbox" id="visible" name="visible" value=1 checked>
-												@else
-													<input type="checkbox" id="visible" name="visible" value=1>
-												@endif
+											<div class="col-md-auto">
+												<select id="visible" name="visible" class="form-control">
+													@if(isset($user->visible) && $user->visible)
+														<option value="1" selected>Yes</option>
+														<option value="0">No</option>
+													@else
+														<option value="1">Yes</option>
+														<option value="0" selected>No</option>
+													@endif
+												</select>
 											</div>
 										</div>
 										<!-- END - Visible -->
@@ -106,13 +111,17 @@
 													<img src="{{ asset('storage/'.$user->avatar) }}" style="width: 40px; height: 40px; border-radius: 50%">
 												</div>
 												<span class="col-md-6" style="vertical-align: center">
-			                                        <label for="avatar" style="cursor: pointer" class="btn btn-dark">
+			                                        <label for="avatar" style="cursor: pointer" class="btn-sm btn-dark">
 				                                        Change
 			                                        </label>
 			                                        <input id="avatar" type="file" class="form-control" name="avatar" style="visibility: hidden; opacity: 0; position: absolute; z-index: -1">
+													&nbsp;&nbsp;
+													or
+													&nbsp;&nbsp;
 			                                        <label for="avatarDelete">
 				                                        Delete
 			                                        </label>
+													&nbsp;
 													<input id="avatarDelete" name="avatarDelete" type="checkbox">
 	                                            </span>
 											@else
@@ -128,14 +137,16 @@
 										<!-- START - Form Buttons -->
 										<div class="form-group row mb-0 mt-5">
 											<div class="col-md-8 offset-md-4">
-												<button type="submit" class="btn btn-primary">
+												<button type="submit" class="btn-sm btn-primary">
 													Save Profile Changes
 												</button>
-												<a href="{{ route('profile') }}" class="btn btn-secondary">
-													Undo Changes
+												&nbsp;&nbsp;
+												<a href="{{ route('profile') }}" class="btn-sm btn-secondary">
+													Undo Edits
 												</a>
-												<a href="{{ route('home') }}" class="btn btn-secondary">
-													Cancel
+												&nbsp;&nbsp;
+												<a href="{{ route('home') }}" class="btn-sm btn-danger">
+													Cancel and Exit
 												</a>
 											</div>
 										</div>

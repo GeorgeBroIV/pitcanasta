@@ -36,7 +36,10 @@
 								</a>
 								<div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="{{ route('users.index') }}">
-										{{ __('WebApp Users') }}
+										{{ __('Users') }}
+									</a>
+									<a class="dropdown-item" href="{{ route('roles.index') }}">
+										{{ __('User Roles') }}
 									</a>
 								</div>
 							</li>
@@ -80,14 +83,14 @@
 								</a>
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 									@if (!Auth::user()->hasVerifiedEmail())
-									<a class="dropdown-item" href="{{ route('verification.notice') }}">
-										{{ __('Verify Email') }}
-									</a>
+										<a class="dropdown-item" href="{{ route('verification.notice') }}">
+											{{ __('Verify Email') }}
+										</a>
 									@endif
 									@isVerified
-									<a class="dropdown-item" href="{{ route('profile') }}">
-										{{ __('Main Profile') }}
-									</a>
+										<a class="dropdown-item" href="{{ route('profile') }}">
+											{{ __('Main Profile') }}
+										</a>
 										<a class="dropdown-item" href="{{ route('profilegame') }}">
 											{{ __('Game Table Profiles') }}
 										</a>
