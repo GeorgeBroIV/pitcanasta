@@ -9,18 +9,26 @@
 						Home Page
 					</div>
 					<div class="card-body">
-					<p>
-						Hi {{ Auth::user()->firstname }}, you are now logged into the {{ env('APP_NAME') }} web
-						application.
-					</p>
-					<p>
-						1/15/2021: The basic {{ env('APP_NAME') }} web application framework is complete
-						(security, user authentication and basic user profile information).&nbsp; The next step in
-						developing this	web application is for us to create a 'Game Table Profile' page where users can
-						create multiple gaming id's.&nbsp; Shortly after that we will create a chatroom!&nbsp; For
-						an overview of things to come, please click on the '{{ env('APP_NAME') }}' logo in the upper
-						left part of this window.
-					</p>
+						<p>
+							Hi {{ Auth::user()->firstname }}, you are now logged into the {{ env('APP_NAME') }} web
+							application.
+						</p>
+						<hr>
+						<h4 style="padding-bottom: 10px">
+							Developer Updates
+						</h4>
+						<p>
+							1/20/2021: Several 'Admin' features were added, along with several code refactors.
+						</p>
+						<p>
+							1/15/2021: The basic {{ env('APP_NAME') }} web application framework is complete
+							(security, user authentication and basic user profile information).&nbsp; The next step in
+							developing this	web application is for us to create a 'Game Table Profile' page where users can
+							create multiple gaming id's.&nbsp; Shortly after that we will create a chatroom!&nbsp; For
+							an overview of things to come, please click on the '{{ env('APP_NAME') }}' logo in the upper
+							left part of this window.
+						</p>
+					</div>
 				</div>
 			</div>
 			
