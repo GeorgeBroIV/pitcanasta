@@ -110,7 +110,7 @@
 												<div class="col-md-4 text-md-right">
 													<img src="{{ asset('storage/'.$user->avatar) }}" style="width: 40px; height: 40px; border-radius: 50%">
 												</div>
-												<span class="col-md-6" style="vertical-align: center">
+												<span class="form-text col-auto">
 			                                        <label for="avatar" style="cursor: pointer" class="btn-sm btn-dark">
 				                                        Change
 			                                        </label>
