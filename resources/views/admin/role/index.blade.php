@@ -49,7 +49,7 @@
 	                                            {{ $role->notes }}
 	                                        </td>
 				                            <td style="padding: 5px">
-					                            <button class="btn-sm btn-primary" type="submit" name="id" id="id"
+					                            <button class="btn-sm btn-secondary" type="submit" name="id" id="id"
 					                                    value="{{ $role->id }}">
 						                            Edit
 					                            </button>
