@@ -80,6 +80,9 @@
                         case 'active':
                             $rules[$field] = 'boolean';
                             break;
+                        case 'protected':
+                            $rules[$field] = 'boolean';
+                            break;
                     }
                 }
             }
@@ -207,6 +210,11 @@
                     case 'active':
                         $messages = array_merge($messages, [
                             'active.boolean' => 'Active must be a boolean (true, false, 0, 1).'
+                        ]);
+                        break;
+                    case 'protected':
+                        $messages = array_merge($messages, [
+                            'protected.boolean' => 'Protected must be a boolean (true, false, 0, 1).'
                         ]);
                         break;
                 }

@@ -86,6 +86,11 @@ class RoleController extends Controller
             $role->active = $request->active;
         }
     
+        /* Protected */
+        if($request->protected != $role->protected) {
+            $role->protected = $request->protected;
+        }
+    
         /* Notes */
         if($request->notes != $role->notes) {
             $role->notes = $request->notes;
@@ -133,6 +138,7 @@ class RoleController extends Controller
         $role->order = $order;
         $role->description = $request->description;
         $role->active = $request->active;
+        $role->protected = $request->protected;
         $role->notes = $request->notes;
         $role->created_by = $userId;
 

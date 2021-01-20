@@ -92,7 +92,7 @@
 												Visible
 											</label>
 											<div class="col-md-auto">
-												<select id="visible" name="visible" class="form-control">
+												<select id="visible" name="visible" class="form-control-sm form-text">
 													@if(isset($user->visible) && $user->visible)
 														<option value="1" selected>Yes</option>
 														<option value="0">No</option>

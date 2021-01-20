@@ -80,11 +80,14 @@
 	                            </table>
 		                        <!-- Submit or Cancel -->
 		                            <div align="center" style="padding-top: 20px">
-			                            <span hidden style="padding-left: 5px; padding-right: 5px">
-				                            <button type="submit" class="btn-sm btn-primary" style="cursor: pointer">
-					                            Save Changes
-				                            </button>
-			                            </span>
+			                            <!-- TODO: Finish this code  for 'Save'-->
+			                            @isDeveloper
+				                            <span style="padding-left: 5px; padding-right: 5px">
+					                            <button type="submit" class="btn-sm btn-primary" style="cursor: pointer">
+						                            Save Changes
+					                            </button>
+				                            </span>
+			                            @endisDeveloper
 			                            <span style="padding-left: 5px; padding-right: 5px">
 				                            <a href="{{ route('users.index') }}" class="btn-sm btn-secondary">
 					                            Cancel

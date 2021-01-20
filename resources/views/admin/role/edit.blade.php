@@ -64,7 +64,7 @@
 			                            Active
 		                            </label>
 		                            <div class="col-md-auto">
-			                            <select id="active" name="active" class="form-control">
+			                            <select id="active" name="active" class="form-control-sm form-text">
 				                            @if(isset($role->active) && $role->active)
 					                            <option value="1" selected>Yes</option>
 					                            <option value="0">No</option>
@@ -76,6 +76,32 @@
 		                            </div>
 	                            </div>
 	                            <!-- END - Active -->
+	                            <!-- START - Protected -->
+	                            <div class="form-group row">
+		                            @isDeveloper
+		                            <label for="protected" class="col-md-2 col-form-label text-md-right">
+			                            Protected
+		                            </label>
+		                            <div class="col-md-auto">
+			                            <select id="protected" name="protected" class="form-control-sm form-text">
+				                            @if(isset($role->protected) && $role->protected)
+					                            <option value="1" selected>Yes</option>
+					                            <option value="0">No</option>
+				                            @else
+					                            <option value="1">Yes</option>
+					                            <option value="0" selected>No</option>
+				                            @endif
+			                            </select>
+		                            </div>
+		                            @else
+			                            @if(isset($role->protected) && $role->protected)
+				                            Yes
+			                            @else
+											No
+			                            @endif
+									@endisDeveloper
+	                            </div>
+	                            <!-- END - Protected -->
 	                            <!-- START - Notes -->
 	                            <div class="form-group row">
 		                            <label for="notes" class="col-md-2 col-form-label text-md-right">

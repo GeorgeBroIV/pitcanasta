@@ -60,13 +60,28 @@
 									Active
 								</label>
 								<div class="col-md-auto">
-									<select id="active" name="active" class="form-control">
+									<select id="active" name="active" class="form-control-sm form-text">
 											<option value="1" selected>Yes</option>
 											<option value="0">No</option>
 									</select>
 								</div>
 							</div>
 							<!-- END - Active -->
+							<!-- START - Protected -->
+							@isDeveloper    <!-- Only Developers can set this property upon Creation -->
+								<div class="form-group row">
+									<label for="active" class="col-md-2 col-form-label text-md-right">
+										Protected
+									</label>
+									<div class="col-md-auto">
+										<select id="protected" name="protected" class="form-control-sm form-text">
+											<option value="1">Yes</option>
+											<option value="0" selected>No</option>
+										</select>
+									</div>
+								</div>
+							@endisDeveloper
+							<!-- END - Protected -->
 							<!-- START - Notes -->
 							<div class="form-group row">
 								<label for="notes" class="col-md-2 col-form-label text-md-right">

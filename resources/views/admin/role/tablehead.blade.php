@@ -8,6 +8,9 @@
 	<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
 		Active
 	</th>
+	<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
+		Protected
+	</th>
 	<th style="font-size: medium; padding-left: 10px; padding-right: 10px; max-width: 600px">
 		Notes
 	</th>

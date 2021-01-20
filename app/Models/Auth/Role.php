@@ -19,10 +19,11 @@ class Role extends Model
         'order',
         'description',
         'active',
+        'protected',
         'notes',
         'created_by',
         'updated_by',
-        'deleted_by',
+        'deleted_by'
     ];
 
     /**

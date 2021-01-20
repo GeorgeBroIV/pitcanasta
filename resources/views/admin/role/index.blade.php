@@ -45,11 +45,18 @@
 				                                    No
 			                                    @endif
 		                                    </td>
+					                            <td style="padding: 10px" align="center">
+						                            @if($role->protected)
+							                            Yes
+						                            @else
+							                            No
+						                            @endif
+					                            </td>
 	                                        <td style="padding: 10px; max-width: 600px">
 	                                            {{ $role->notes }}
 	                                        </td>
 				                            <!-- Protects Admins from deleting main roles -->
-				                            @if($role->id > 4)
+				                            @isDeveloper
 					                            <td style="padding: 5px">
 						                            <button class="btn-sm btn-secondary" type="submit" name="id" id="id"
 						                                    value="{{ $role->id }}">
@@ -68,7 +75,7 @@
 								                        Protected
 							                        </div>
 						                        </td>
-					                        @endif
+					                        @endisDeveloper
 	                                    </tr>
 	                                @endforeach
 	                            </table>
