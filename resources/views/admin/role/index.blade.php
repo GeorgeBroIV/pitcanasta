@@ -48,21 +48,27 @@
 	                                        <td style="padding: 10px; max-width: 600px">
 	                                            {{ $role->notes }}
 	                                        </td>
-				                            <td style="padding: 5px">
-					                            <button class="btn-sm btn-secondary" type="submit" name="id" id="id"
-					                                    value="{{ $role->id }}">
-						                            Edit
-					                            </button>
-				                            </td>
-					                        <td>
-						                        <!-- Protects Admins from deleting main roles -->
-						                        @if($role->id > 4)
+				                            <!-- Protects Admins from deleting main roles -->
+				                            @if($role->id > 4)
+					                            <td style="padding: 5px">
+						                            <button class="btn-sm btn-secondary" type="submit" name="id" id="id"
+						                                    value="{{ $role->id }}">
+							                            Edit
+						                            </button>
+					                            </td>
+						                        <td>
 						                            <a href="{{ route('roles.delete', $role->id) }}"
 						                               class="btn-sm btn-danger">
 							                            Delete
 						                            </a>
-												@endif
-					                        </td>
+						                        </td>
+											@else
+						                        <td colspan="2" style="padding: 5px" align="center">
+							                        <div style="color: gray">
+								                        Protected
+							                        </div>
+						                        </td>
+					                        @endif
 	                                    </tr>
 	                                @endforeach
 	                            </table>
