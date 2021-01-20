@@ -6,7 +6,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header" style="font-size: medium">
-						Game Table Profiles
+						{{ $user->displayname }}'s Profiles
 					</div>
 					<div class="card-body">
 						@if (session('status'))
@@ -31,15 +31,14 @@
 											</ul>
 										</div>
 									@endif
-									@if(count($profileGames) == 0)
+									@if(count($profiles) == 0)
 										<div>
-											Hi {{ $user->displayname }}, right now don't have any game table profiles
-											(game id's) set up.&nbsp;  To create one, click the 'New Game Table
-											Profile' button.  Note you can have up to 10 unique game profiles on your
-											account.
+											Hi {{ $user->displayname }}, right now don't have any profiles set
+											up.&nbsp; To create one, click the 'New Profile' button.  Note you can
+											have up to 10 unique profiles on your account.
 										</div>
 									@else
-										<form action="{{ route('profilegame.edit') }}" method="POST" role="form"
+										<form action="{{ route('profile.edit') }}" method="POST" role="form"
 										      enctype="multipart/form-data">
 										@csrf
 											<table class="table-bordered">
@@ -57,16 +56,16 @@
 														Action
 													</th>
 												</tr>
-												@foreach($profileGames as $profileGame)
+												@foreach($profiles as $profile)
 													<tr>
 														<td>
-															{{ $profileGame->name }}
+															{{ $profile->name }}
 														</td>
 														<td>
-															{{ $profileGame->avatar }}
+															{{ $profile->avatar }}
 														</td>
 														<td>
-															{{ $profileGame->rating }}
+															{{ $profile->rating }}
 														</td>
 														<td>
 															<button>Edit</button>

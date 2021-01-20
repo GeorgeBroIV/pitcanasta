@@ -88,11 +88,11 @@
 										</a>
 									@endif
 									@isVerified
-										<a class="dropdown-item" href="{{ route('profile') }}">
-											{{ __('Main Profile') }}
+										<a class="dropdown-item" href="{{ route('account') }}">
+											{{ __('Account') }}
 										</a>
-										<a class="dropdown-item" href="{{ route('profilegame') }}">
-											{{ __('Game Table Profiles') }}
+										<a class="dropdown-item" href="{{ route('profile.index') }}">
+											{{ __('Profiles') }}
 										</a>
 									@endisVerified
 									<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('form').submit();">

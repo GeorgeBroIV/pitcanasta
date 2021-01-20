@@ -2,7 +2,7 @@
     
     namespace App\Models\Auth;
     
-    use App\Models\Profilegame;
+    use App\Models\Profile;
     use App\Traits\RolesTrait;
     use Illuminate\Contracts\Auth\MustVerifyEmail;
     use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -93,8 +93,8 @@
         /**
          * The Users that have Game Profiles.
          */
-        public function profilegame()
+        public function profile()
         {
-            return $this->hasMany(Profilegame::class);
+            return $this->hasMany(Profile::class);
         }
     }

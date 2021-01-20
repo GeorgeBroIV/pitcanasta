@@ -6,7 +6,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header" style="font-size: medium">
-						{{ $user->displayname }}'s Main Profile
+						{{ $user->displayname }}'s Account Information
 					</div>
 					<div class="card-body">
 						@if (session('status'))
@@ -31,7 +31,7 @@
 											</ul>
 										</div>
 									@endif
-									<form action="{{ route('profile.edit') }}" method="POST" role="form"
+									<form action="{{ route('account.edit') }}" method="POST" role="form"
 									      enctype="multipart/form-data">
 										@csrf
 										<!-- START - User Name (disabled) -->
@@ -138,10 +138,10 @@
 										<div class="form-group row mb-0 mt-5">
 											<div class="col-md-8 offset-md-4">
 												<button type="submit" class="btn-sm btn-primary">
-													Save Profile Changes
+													Save Account Changes
 												</button>
 												&nbsp;&nbsp;
-												<a href="{{ route('profile') }}" class="btn-sm btn-secondary">
+												<a href="{{ route('account') }}" class="btn-sm btn-secondary">
 													Undo Edits
 												</a>
 												&nbsp;&nbsp;
@@ -155,11 +155,11 @@
 									<hr>
 									<p>
 										* Note that the 'Display Name' is for the {{ env('APP_NAME') }} web
-										application framework and not for any 'Social Providers' or 'Game Table
-										Profiles' display names.&nbsp; It is recommended to use your regular nick name
-										for this value.&nbsp; Once you are registered within this system you'll have
-										the ability to create custom Game Table id's for the gaming tables, message
-										boards and chat rooms.
+										application framework and not for any 'Social Providers' or 'Profile' display
+										names.&nbsp; It is recommended to use your regular nick name for this value
+										.&nbsp; Once you are registered within this system you'll have the ability to
+										create custom Game Table id's for the gaming tables, message boards and chat
+										rooms.
 									</p>
 								</div>
 							</div>
