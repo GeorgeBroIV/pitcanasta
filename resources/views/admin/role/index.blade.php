@@ -55,10 +55,13 @@
 					                            </button>
 				                            </td>
 					                        <td>
-					                            <a href="{{ route('roles.delete', $role->id) }}"
-					                               class="btn-sm btn-danger">
-						                            Delete
-					                            </a>
+						                        <!-- Protects Admins from deleting main roles -->
+						                        @if($role->id > 4)
+						                            <a href="{{ route('roles.delete', $role->id) }}"
+						                               class="btn-sm btn-danger">
+							                            Delete
+						                            </a>
+												@endif
 					                        </td>
 	                                    </tr>
 	                                @endforeach
