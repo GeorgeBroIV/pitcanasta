@@ -111,7 +111,8 @@
 													<img src="{{ asset('storage/'.$user->avatar) }}" style="width: 40px; height: 40px; border-radius: 50%">
 												</div>
 												<span class="form-text col-auto">
-			                                        <label for="avatar" style="cursor: pointer" class="btn-sm btn-dark">
+			                                        <label for="avatar" style="cursor: pointer" class="btn-sm
+			                                        btn-secondary">
 				                                        Change
 			                                        </label>
 			                                        <input id="avatar" type="file" class="form-control" name="avatar" style="visibility: hidden; opacity: 0; position: absolute; z-index: -1">
@@ -141,11 +142,11 @@
 													Save Account Changes
 												</button>
 												&nbsp;&nbsp;
-												<a href="{{ route('account') }}" class="btn-sm btn-dark">
+												<a href="{{ route('account') }}" class="btn-sm btn-secondary">
 													Undo Edits
 												</a>
 												&nbsp;&nbsp;
-												<a href="{{ route('home') }}" class="btn-sm btn-secondary">
+												<a href="{{ route('home') }}" class="btn-sm btn-dark">
 													Cancel and Exit
 												</a>
 											</div>
