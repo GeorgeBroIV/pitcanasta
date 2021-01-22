@@ -141,11 +141,11 @@
 													Save Account Changes
 												</button>
 												&nbsp;&nbsp;
-												<a href="{{ route('account') }}" class="btn-sm btn-secondary">
+												<a href="{{ route('account') }}" class="btn-sm btn-dark">
 													Undo Edits
 												</a>
 												&nbsp;&nbsp;
-												<a href="{{ route('home') }}" class="btn-sm btn-danger">
+												<a href="{{ route('home') }}" class="btn-sm btn-secondary">
 													Cancel and Exit
 												</a>
 											</div>
