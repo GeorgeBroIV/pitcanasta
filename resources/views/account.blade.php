@@ -143,7 +143,7 @@
 												</button>
 												&nbsp;&nbsp;
 												<a href="{{ route('account') }}" class="btn-sm btn-secondary">
-													Undo Edits
+													Reset Values
 												</a>
 												&nbsp;&nbsp;
 												<a href="{{ route('home') }}" class="btn-sm btn-dark">
