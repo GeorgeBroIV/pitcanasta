@@ -32,19 +32,20 @@
         }
         
         /**
-         * Method to update profile, where the $request is passed to AccountUpdateRequest class for validation
-         * when this method is called (and before executing the first statement within the method).
+         * Method to update profile, where the $request is passed to AccountUpdateRequest class for sanitization and
+         * validation when this method is called (and before executing the first statement within the method).
          *
          * @param  AccountUpdateRequest $request
          * @return RedirectResponse
          */
         public function edit(AccountUpdateRequest $request)
         {
-            /* Validation passed if we arrive here */
-            
+/*
+ * TODO: Pull this logic into a separate DRY class
+ */
             // Get current user
             $user = Auth()->user();
-            
+
             /* First Name */
             // If user changes first name (i.e. different than what is stored in database)
             if($request->firstname != $user->firstname) {
@@ -108,6 +109,9 @@
             // Save the updates to the database table
             $user->save();
             
+/*
+ * END - To Do
+*/
             // And then return user back and show a flash message
             return redirect()->back()->with(['status' => 'Account updated successfully.']);
         }
