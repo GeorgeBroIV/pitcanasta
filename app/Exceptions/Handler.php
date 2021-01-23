@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -38,11 +39,18 @@ class Handler extends ExceptionHandler
             //
         });
     }
-
+    
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Exception  $exception
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     */
     public function render($request, $exception){
-        if ($exception instanceof AuthenticationException) {
-            return redirect('/')->with(['status' => 'Session Expired, please log back in.']);
+        if ($exception instanceof TokenMismatchException) {
+            return redirect('login')->with(['message' => 'Your session expired due to inactivity, please log back in.']);
         }
-        return parent::render($request, $exception)->with(['status' => 'Session Expired, please log back in.']);
+        return parent::render($request, $exception);
     }
 }
