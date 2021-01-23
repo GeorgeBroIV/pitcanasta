@@ -102,12 +102,12 @@
 		                            </span>
 								<span style="padding-left: 5px; padding-right: 5px">
 		                            <a href="{{ route('roles.create') }}" class="btn-sm btn-secondary">
-			                            Clear Values
+			                            Reset Values
 		                            </a>
 	                            </span>
 								<span style="padding-left: 5px; padding-right: 5px">
 		                            <a href="{{ route('roles.index') }}" class="btn-sm btn-dark">
-			                            Cancel
+			                            Cancel and Exit
 		                            </a>
 	                            </span>
 							</div>
