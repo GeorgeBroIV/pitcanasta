@@ -70,11 +70,11 @@
 							<!-- START - Protected -->
 							@isDeveloper    <!-- Only Developers can set this property upon Creation -->
 								<div class="form-group row">
-									<label for="protected" class="col-md-2 col-form-label text-md-right">
+									<label for="protect" class="col-md-2 col-form-label text-md-right">
 										Protected
 									</label>
 									<div class="col-md-auto">
-										<select id="protected" name="protected" class="form-control-sm form-text">
+										<select id="protect" name="protect" class="form-control-sm form-text">
 											<option value="1">Yes</option>
 											<option value="0" selected>No</option>
 										</select>

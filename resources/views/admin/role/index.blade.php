@@ -42,7 +42,7 @@
 			                                    @endif
 		                                    </td>
 					                            <td style="padding: 10px" align="center">
-						                            @if($role->protected)
+						                            @if($role->protect)
 							                            Yes
 						                            @else
 							                            No
@@ -52,7 +52,7 @@
 	                                            {{ $role->notes }}
 	                                        </td>
 				                            <!-- Protects Admins from deleting main roles -->
-				                            @if(!$role->protected)
+				                            @if(!$role->protect)
 					                            <td style="padding: 5px">
 						                            <button class="btn-sm btn-secondary" type="submit" name="id" id="id"
 						                                    value="{{ $role->id }}">
