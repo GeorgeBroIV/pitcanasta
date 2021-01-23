@@ -13,8 +13,8 @@
 	                        Web Application Users
 	                    </div>
 	                    <div class="card-body">
-	                        <form action="" method="post">
-	                            @method('edit')
+	                        <form action="{{ route('users.show', $users[0]->id) }}" method="get">
+	                            @method('put')
 	                            @csrf
 	                            <table>
 	                                @include('admin.user.tablehead')
@@ -43,11 +43,26 @@
 				                                @endif
 		                                    </td>
 	                                        <td align="center">
-		                                        <a class="btn-sm btn-secondary" href="{{ route('users.edit', $user->id) }}">
-			                                        Edit</a>
+		                                        @if($user->id = Auth()->user()->id)
+													Protected
+		                                        @else
+			                                        <a class="btn-sm btn-secondary" href="{{ route('users.edit', $user->id) }}">
+				                                        Edit
+			                                        </a>
+		                                        @endif
 	                                        </td>
 	                                    </tr>
 	                                @endforeach
+		                            <tr>
+			                            <td colspan="7">
+				                            &nbsp;
+			                            </td>
+		                            </tr>
+		                            <tr>
+			                            <td colspan="7" class="alert-info">
+				                            To edit your own account information, go to 'Account' in your User Menu (upper right).
+			                            </td>
+		                            </tr>
 	                            </table>
 	                        </form>
 	                    </div>
