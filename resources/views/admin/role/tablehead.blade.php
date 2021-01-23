@@ -1,6 +1,6 @@
 <tr style="border-bottom: 1px solid black">
 	<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
-		Role Description
+		Role
 	</th>
 	<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
 		Active
