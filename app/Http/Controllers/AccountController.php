@@ -45,8 +45,8 @@
          */
         public function index()
         {
-//            $user = Auth()->user();
-//            return view('account', compact('user'));
+            $user = Auth()->user();
+            return view('account', compact('user'));
         }
         
         /**
