@@ -38,10 +38,4 @@ class Handler extends ExceptionHandler
             //
         });
     }
-
-    public function render($request, $exception){
-        if ($exception instanceof AuthenticationException) {
-            return redirect('/')->with(['status' => 'Session Expired, please log back in.']);
-        }
-    }
 }
