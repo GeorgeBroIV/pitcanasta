@@ -141,7 +141,7 @@ class RoleController extends Controller
 
 
 //        $role->protected = $request->protected;
-        $role->protected = false;
+        $role->protected = 0;
 
         
         $role->notes = $request->notes;
