@@ -43,7 +43,7 @@
 				                                @endif
 		                                    </td>
 	                                        <td align="center">
-		                                        @if($user->id = Auth()->user()->id)
+		                                        @if($user->id == Auth()->user()->id)
 													Protected
 		                                        @else
 			                                        <a class="btn-sm btn-secondary" href="{{ route('users.edit', $user->id) }}">
