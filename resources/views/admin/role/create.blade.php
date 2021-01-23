@@ -106,7 +106,7 @@
 		                            </a>
 	                            </span>
 								<span style="padding-left: 5px; padding-right: 5px">
-		                            <a href="{{ route('roles.index') }}" class="btn-sm btn-danger">
+		                            <a href="{{ route('roles.index') }}" class="btn-sm btn-dark">
 			                            Cancel
 		                            </a>
 	                            </span>

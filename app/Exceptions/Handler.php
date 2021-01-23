@@ -42,6 +42,7 @@ class Handler extends ExceptionHandler
     
     /**
      * Render an exception into an HTTP response.
+     * https://laracasts.com/discuss/channels/laravel/redirect-to-login-page-after-session-timeout
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
