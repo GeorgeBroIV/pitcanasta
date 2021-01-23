@@ -87,6 +87,7 @@ class RoleController extends Controller
         }
     
         /* Protected */
+        // Check if set, since the $request->protect will be null if not 'Developer' role
         if(isset($request->protect) && $request->protect != $role->protect) {
             $role->protect = $request->protect;
         }
@@ -97,7 +98,6 @@ class RoleController extends Controller
         }
         
         $role->updated_by = $userId;
-dd($request->protect, $role->protect, $request, $role);
         $role->save();
         // Once the model is updated, redirect the user to see the list of all Roles
         return redirect()->route('roles.index');
