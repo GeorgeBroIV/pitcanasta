@@ -97,15 +97,13 @@
 			                            <label for="protected" class="col-md-2 col-form-label text-md-right">
 				                            Protected
 			                            </label>
-			                            @if(isset($role->protected) && $role->protected)
-				                            <div class="text-body">
-												Yes
+				                            <div class="form-text">
+					                            @if(isset($role->protected) && $role->protected)
+						                            Yes
+					                            @else
+													No
+					                            @endif
 				                            </div>
-			                            @else
-				                            <div class="text-body">
-					                            No
-				                            </div>
-			                            @endif
 									@endisDeveloper
 	                            </div>
 	                            <!-- END - Protected -->
