@@ -31,7 +31,8 @@ class EnsureUserHasRole
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        if (! $request->user()->hasRole($role)) {
+        // check() tests if the session expired
+        if (! $request->user()->hasRole($role) && !$request->user()->check()) {
             return redirect(RouteServiceProvider::HOME);
         }
         return $next($request);
