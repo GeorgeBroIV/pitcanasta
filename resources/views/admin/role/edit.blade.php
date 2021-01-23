@@ -94,7 +94,6 @@
 				                            </select>
 			                            </div>
 		                            @else
-			                            @isDeveloper
 			                            <label for="protected" class="col-md-2 col-form-label text-md-right">
 				                            Protected
 			                            </label>
