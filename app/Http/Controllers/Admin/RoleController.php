@@ -66,6 +66,7 @@ class RoleController extends Controller
      */
     public function update(RoleUpdateRequest $request)
     {
+dd($request);
         $role = Role::find($request->id);
         
         // Get current User
