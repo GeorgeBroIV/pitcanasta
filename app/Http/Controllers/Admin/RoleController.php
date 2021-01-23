@@ -96,9 +96,7 @@ class RoleController extends Controller
             $role->notes = $request->notes;
         }
         
-        $role->updated_by = $userId;
-
-dd($role);
+        $role->updated_by = (string) $userId;
         $role->save();
 
         // Once the model is updated, redirect the user to see the list of all Roles
