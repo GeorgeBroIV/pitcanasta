@@ -98,9 +98,13 @@
 				                            Protected
 			                            </label>
 			                            @if(isset($role->protected) && $role->protected)
-				                            Yes
+				                            <div class="text-body">
+												Yes
+				                            </div>
 			                            @else
-											Nos
+				                            <div class="text-body">
+					                            No
+				                            </div>
 			                            @endif
 									@endisDeveloper
 	                            </div>
