@@ -70,7 +70,7 @@
 							<!-- START - Protected -->
 							@isDeveloper    <!-- Only Developers can set this property upon Creation -->
 								<div class="form-group row">
-									<label for="active" class="col-md-2 col-form-label text-md-right">
+									<label for="protected" class="col-md-2 col-form-label text-md-right">
 										Protected
 									</label>
 									<div class="col-md-auto">
@@ -101,15 +101,15 @@
 			                            </button>
 		                            </span>
 								<span style="padding-left: 5px; padding-right: 5px">
-			                            <a href="{{ route('roles.create') }}" class="btn-sm btn-secondary">
-				                            Clear Values
-			                            </a>
-		                            </span>
+		                            <a href="{{ route('roles.create') }}" class="btn-sm btn-secondary">
+			                            Clear Values
+		                            </a>
+	                            </span>
 								<span style="padding-left: 5px; padding-right: 5px">
-			                            <a href="{{ route('roles.index') }}" class="btn-sm btn-danger">
-				                            Cancel
-			                            </a>
-		                            </span>
+		                            <a href="{{ route('roles.index') }}" class="btn-sm btn-danger">
+			                            Cancel
+		                            </a>
+	                            </span>
 							</div>
 							<!-- END - Form Buttons -->
 						</form>
