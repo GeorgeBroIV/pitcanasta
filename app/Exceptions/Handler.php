@@ -49,7 +49,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, $exception){
         if ($exception instanceof TokenMismatchException) {
-            return redirect('login')->with(['message' => 'Your session expired due to inactivity, please log back in.']);
+            return redirect('login')->with(['status' => 'Your session expired due to inactivity, please log back in.']);
         }
         return parent::render($request, $exception);
     }
