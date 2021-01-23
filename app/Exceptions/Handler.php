@@ -43,6 +43,6 @@ class Handler extends ExceptionHandler
         if ($exception instanceof AuthenticationException) {
             return redirect('/')->with(['status' => 'Session Expired, please log back in.']);
         }
-        return parent::render($request, $exception);
+        return parent::render($request, $exception)->with(['status' => 'Session Expired, please log back in.']);
     }
 }
