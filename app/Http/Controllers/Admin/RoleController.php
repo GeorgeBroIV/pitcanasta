@@ -138,7 +138,8 @@ class RoleController extends Controller
         $role->order = $order;
         $role->description = $request->description;
         $role->active = $request->active;
-        $role->protected = $request->protected;
+        
+//        $role->protected = $request->protected;
         $role->notes = $request->notes;
         $role->created_by = $userId;
 
