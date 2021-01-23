@@ -96,8 +96,9 @@ class RoleController extends Controller
             $role->notes = $request->notes;
         }
         
-        $role->updated_by = (integer) $userId;
+        $role->updated_by = $userId;
         $role->save();
+dd($role);
 
         // Once the model is updated, redirect the user to see the list of all Roles
         return redirect()->route('roles.index');
