@@ -79,25 +79,29 @@
 	                            <!-- START - Protected -->
 	                            <div class="form-group row">
 		                            @isDeveloper
-		                            <label for="protected" class="col-md-2 col-form-label text-md-right">
-			                            Protected
-		                            </label>
-		                            <div class="col-md-auto">
-			                            <select id="protected" name="protected" class="form-control-sm form-text">
-				                            @if(isset($role->protected) && $role->protected)
-					                            <option value="1" selected>Yes</option>
-					                            <option value="0">No</option>
-				                            @else
-					                            <option value="1">Yes</option>
-					                            <option value="0" selected>No</option>
-				                            @endif
-			                            </select>
-		                            </div>
+			                            <label for="protected" class="col-md-2 col-form-label text-md-right">
+				                            Protected
+			                            </label>
+			                            <div class="col-md-auto">
+				                            <select id="protected" name="protected" class="form-control-sm form-text">
+					                            @if(isset($role->protected) && $role->protected)
+						                            <option value="1" selected>Yes</option>
+						                            <option value="0">No</option>
+					                            @else
+						                            <option value="1">Yes</option>
+						                            <option value="0" selected>No</option>
+					                            @endif
+				                            </select>
+			                            </div>
 		                            @else
+			                            @isDeveloper
+			                            <label for="protected" class="col-md-2 col-form-label text-md-right">
+				                            Protected
+			                            </label>
 			                            @if(isset($role->protected) && $role->protected)
 				                            Yes
 			                            @else
-											No
+											Nos
 			                            @endif
 									@endisDeveloper
 	                            </div>
