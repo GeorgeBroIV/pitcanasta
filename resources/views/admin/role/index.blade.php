@@ -52,7 +52,7 @@
 	                                            {{ $role->notes }}
 	                                        </td>
 				                            <!-- Protects Admins from deleting main roles -->
-				                            @isDeveloper
+				                            @if(!$role->protected)
 					                            <td style="padding: 5px">
 						                            <button class="btn-sm btn-secondary" type="submit" name="id" id="id"
 						                                    value="{{ $role->id }}">
@@ -71,7 +71,7 @@
 								                        Protected
 							                        </div>
 						                        </td>
-					                        @endisDeveloper
+					                        @endif
 	                                    </tr>
 	                                @endforeach
 	                            </table>
