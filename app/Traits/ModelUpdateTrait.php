@@ -24,7 +24,7 @@
             {
                 if ($field != 'avatar')
                 {
-                    if ($request->$field != $model->$field)
+                    if (isset($request->$field) && $request->field != $model->$field)
                     {
                         $model->$field = $request->$field;
                     }
@@ -60,6 +60,7 @@
                     $model->avatar = $filePath;
                 }
             }
+            $model->updated_by = Auth()->user()->id;
             // Save the updates to the database table
             $model->save();
 

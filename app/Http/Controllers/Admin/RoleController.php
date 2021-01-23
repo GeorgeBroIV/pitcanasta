@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleUpdateRequest;
 use App\Models\Auth\Role;
 use Illuminate\Http\Request;
+use App\Traits\ModelUpdateTrait;
 
 /**
  * Code Author
@@ -19,6 +20,24 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    use ModelUpdateTrait;
+    
+    /**
+     * The model this Request Validation uses.
+     */
+    public $modelName = "Role";
+    
+    /**
+     * The model's input fields to undergo validation checks (modify as applicable).
+     */
+    public $fields = [
+        'name',
+        'description',
+        'active',
+        'protect',
+        'notes'
+    ];
+
     public function __construct() {
         $this->middleware('role:Admin');
     }
@@ -41,8 +60,8 @@ class RoleController extends Controller
      */
     public function show(Request $request)
     {
-        $id = (int)$request->id;
-        return redirect()->route('roles.edit', [$id]);
+        // Passthrough to '$this->edit' method via route
+        return redirect()->route('roles.edit', $request->id);
     }
 
     /**
@@ -53,7 +72,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        // Get current Role
+        // Get the requested role and display in the view
         $role = Role::find($id);
         return view('admin.role.edit', compact('role'));
     }
@@ -66,39 +85,10 @@ class RoleController extends Controller
      */
     public function update(RoleUpdateRequest $request)
     {
-        $role = Role::find($request->id);
-        
-        // Get current User
-        $userId = Auth()->user()->id;
-    
-        /* Name */
-        if($request->name != $role->name) {
-            $role->name = $request->name;
-        }
-    
-        /* Description */
-        if($request->description != $role->description) {
-            $role->description = $request->description;
-        }
-    
-        /* Active */
-        if($request->active != $role->active) {
-            $role->active = $request->active;
-        }
-    
-        /* Protected */
-        // Check if set, since the $request->protect will be null if not 'Developer' role
-        if(isset($request->protect) && $request->protect != $role->protect) {
-            $role->protect = $request->protect;
-        }
-    
-        /* Notes */
-        if($request->notes != $role->notes) {
-            $role->notes = $request->notes;
-        }
-        
-        $role->updated_by = $userId;
-        $role->save();
+        $model = new Role;
+        $model = $model->find($request->id);
+        $this->updateModel($model, $this->fields, $request);
+
         // Once the model is updated, redirect the user to see the list of all Roles
         return redirect()->route('roles.index');
     }
