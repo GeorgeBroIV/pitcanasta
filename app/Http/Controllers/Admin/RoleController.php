@@ -87,7 +87,7 @@ class RoleController extends Controller
         }
     
         /* Protected */
-        if($request->protect != $role->protect) {
+        if(isset($request->protect) && $request->protect != $role->protect) {
             $role->protect = $request->protect;
         }
     
