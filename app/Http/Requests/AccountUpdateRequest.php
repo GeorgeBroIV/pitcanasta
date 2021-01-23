@@ -38,7 +38,7 @@
         /**
          * The model this Request Validation uses.
          */
-        public $model = "User";
+        public $modelName = "User";
     
         /**
          * The model's input fields to undergo validation checks (modify as applicable).
@@ -107,7 +107,7 @@
         public function rules()
         {
             // Laravel Validation Rule-based Messages
-            $rules = $this->ValidationInputRules($this->model, $this->fields);
+            $rules = $this->ValidationInputRules($this->modelName, $this->fields);
             return $rules;
         }
         
@@ -119,7 +119,7 @@
         public function messages()
         {
             // Laravel Validation Rule-based Messages
-            $messages = $this->ValidationOutputMessages($this->model, $this->fields);
+            $messages = $this->ValidationOutputMessages($this->modelName, $this->fields);
             return $messages;
         }
         
@@ -133,7 +133,7 @@
         public function filters($fields)
         {
             // Sanitizes field values
-            $filters = $this->FieldSanitize($this->model, $this->fields);
+            $filters = $this->FieldSanitize($this->modelName, $this->fields);
             return $filters;
         }
     }

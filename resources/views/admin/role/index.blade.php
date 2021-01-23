@@ -31,11 +31,7 @@
 				                            <tr style="border-bottom: 1px solid lightgray">
 			                            @else
 				                            <tr style="background-color: lightgrey; border-bottom: 1px solid darkgrey">
-										@endif
-		                                    <td style="padding: 10px">
-			                                    {{ $role->name }}
-		                                    </td>
-		                                    <td style="padding: 10px">
+										@endif <td style="padding: 10px">
 	                                            {{ $role->description }}
 	                                        </td>
 		                                    <td style="padding: 10px" align="center">
