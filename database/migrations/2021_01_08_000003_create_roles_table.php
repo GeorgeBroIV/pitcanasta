@@ -19,7 +19,7 @@ class CreateRolesTable extends Migration
             $table->smallInteger('order')->unique();
             $table->string('description')->nullable();
             $table->boolean('active')->default(1);
-            $table->boolean('protected')->default(0);
+            $table->boolean('protect')->default(0);
             $table->text('notes')->nullable();
             $table->timestamps();
             $table->foreignId('created_by')->nullable();

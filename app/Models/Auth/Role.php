@@ -19,7 +19,7 @@ class Role extends Model
         'order',
         'description',
         'active',
-        'protected',
+        'protect',
         'notes',
         'created_by',
         'updated_by',

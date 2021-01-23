@@ -79,12 +79,12 @@
 	                            <!-- START - Protected -->
 	                            <div class="form-group row">
 		                            @isDeveloper
-			                            <label for="protected" class="col-md-2 col-form-label text-md-right">
+			                            <label for="protect" class="col-md-2 col-form-label text-md-right">
 				                            Protected
 			                            </label>
 			                            <div class="col-md-auto">
-				                            <select id="protected" name="protected" class="form-control-sm form-text">
-					                            @if(isset($role->protected) && $role->protected)
+				                            <select id="protect" name="protect" class="form-control-sm form-text">
+					                            @if(isset($role->protect) && $role->protect)
 						                            <option value="1" selected>Yes</option>
 						                            <option value="0">No</option>
 					                            @else
@@ -94,11 +94,11 @@
 				                            </select>
 			                            </div>
 		                            @else
-			                            <label for="protected" class="col-md-2 col-form-label text-md-right">
+			                            <label for="protect" class="col-md-2 col-form-label text-md-right">
 				                            Protected
 			                            </label>
 				                            <div class="col-md-auto form-text">
-					                            @if(isset($role->protected) && $role->protected)
+					                            @if(isset($role->protect) && $role->protect)
 						                            Yes
 					                            @else
 													No
