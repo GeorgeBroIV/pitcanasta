@@ -3,9 +3,6 @@
 		Role Name
 	</th>
 	<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
-		Description
-	</th>
-	<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
 		Active
 	</th>
 	<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
