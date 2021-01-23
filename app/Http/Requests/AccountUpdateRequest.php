@@ -47,7 +47,7 @@
             'firstname',
             'lastname',
             'displayname',
-            'avatar'
+            'avatar',
         ];
     
         /**

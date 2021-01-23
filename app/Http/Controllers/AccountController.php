@@ -6,13 +6,13 @@
     use App\Models\Auth\User;
     use App\Traits\RolesTrait;
     use App\Traits\InputValidateTrait;
-    use App\Traits\UpdateModelTrait;
+    use App\Traits\ModelUpdateTrait;
     use App\Traits\UploadTrait;
     use Illuminate\Http\RedirectResponse;
     
     class AccountController extends Controller
     {
-        use UploadTrait, InputValidateTrait, RolesTrait, UpdateModelTrait;
+        use UploadTrait, InputValidateTrait, RolesTrait, ModelUpdateTrait;
 
         /**
          * The model this Request Validation uses.
@@ -58,12 +58,10 @@
          */
         public function edit(AccountUpdateRequest $request)
         {
-            // Update the Model from the Request
             $model = new User;
             $model = $model->find(Auth()->user()->id);
             $this->updateModel($model, $this->fields, $request);
-dd($this->fields);
-
+        
             // And then return user back and show a flash message
             return redirect()->back()->with(['status' => 'Account updated successfully.']);
         }
