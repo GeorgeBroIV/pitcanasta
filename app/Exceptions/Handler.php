@@ -57,7 +57,7 @@ class Handler extends ExceptionHandler
 //dd("elseif");
 //            $exception = new HttpException(500);
 //            return redirect()->route('home');
-        } else {
+//        } else {
 // dd("else");
 //            return redirect()->route('home');
         }
