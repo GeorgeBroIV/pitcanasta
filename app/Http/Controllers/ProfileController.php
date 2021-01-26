@@ -83,7 +83,6 @@ class ProfileController extends Controller
      */
     public function store(ModelUpdateRequest $request)
     {
-dd("ProfileController->store");
         $model = new Profile();
         $this->updateModel($this->modelName, $model, $request);
     
