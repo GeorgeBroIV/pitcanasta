@@ -45,12 +45,13 @@
          * @param integer $id
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|RedirectResponse
          */
-        public function edit(Request $request, $id)
+        public function edit($id)
         {
-            if($request->id != Auth()->user()->id) {
+            $user = User::find($id);
+    
+            if($user->id != Auth()->user()->id) {
                 return redirect()->route('home');
             }
-            $user = User::find($id);
             return view('account.edit', compact('user'));
         }
 
