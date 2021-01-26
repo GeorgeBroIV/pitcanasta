@@ -54,9 +54,11 @@ class Handler extends ExceptionHandler
         if ($exception instanceof TokenMismatchException) {
             return redirect('login')->with(['message' => 'Your session expired due to inactivity, please log back in.']);
         } elseif (!$this->isHttpException($exception)) {
+dd("elseif");
             $exception = new HttpException(500);
             return redirect()->route('home');
         } else {
+dd("else");
             return redirect()->route('home');
         }
     }

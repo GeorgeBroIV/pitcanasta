@@ -49,6 +49,7 @@
         {
             $user = User::find($id);
     
+            // Prevents users from entering in slug
             if($user->id != Auth()->user()->id) {
                 return redirect()->route('home');
             }
