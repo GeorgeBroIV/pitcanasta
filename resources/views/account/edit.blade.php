@@ -35,6 +35,9 @@
 									      enctype="multipart/form-data">
 										@method('put')
 										@csrf
+										<!-- START - Hidden Form to transmit $user->id -->
+											<input id="id" name="id" type="hidden" value="{{ $user->id }}">
+										<!-- END - Hidden Form -->
 										<!-- START - User Name (disabled) -->
 										<!-- TODO Add Ability to Change User Name, with validation constraints -->
 										<div class="form-group row">

@@ -58,6 +58,9 @@
          */
         public function update(ModelUpdateRequest $request)
         {
+            if($request->id != Auth()->user()->id) {
+                return redirect->route('home');
+            }
             $model = User::find(Auth()->user()->id);
             $this->updateModel($this->modelName,$model, $request);
         
