@@ -43,7 +43,11 @@
 								<table>
 									@include('profile.tablehead')
 									@foreach($profiles as $profile)
-										<tr style="border-bottom: 1px solid lightgray">
+										@if($profile->visible)
+											<tr style="border-bottom: 1px solid lightgray">
+										@else
+											<tr style="background-color: lightgrey; border-bottom: 1px solid darkgrey">
+										@endif
 											<td style="padding: 10px">
 												{{ $profile->name }}
 											</td>
