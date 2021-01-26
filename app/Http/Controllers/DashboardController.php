@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auth\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -24,6 +25,10 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth()->user();
-        return view('dashboard', compact('user'));
+        $users = User::all();
+        $usersVerified = $users->where('email_verified_at', '<>', null);
+        $usersVerifiedCount = count($usersVerified);
+        $userCount = count($users);
+        return view('dashboard', compact('user', 'userCount', 'usersVerifiedCount'));
     }
 }

@@ -9,11 +9,18 @@
 						{{ $user->displayname }}'s Dashboard
 					</div>
 					<div class="card-body">
-					<p>
-						When developed, this dashboard will display real-time statistics including: total number
-						of registered users; number of currently logged-in users; chatroom statistics; new
-						messageboard messages since your last visit; etc.
-					</p>
+						<p>
+							Number of Registered Users: {{ $userCount }}
+						</p>
+						<p>
+							Number of Verified Users: {{ $usersVerifiedCount }}
+						</p>
+						<p>
+							When developed, this dashboard will display real-time statistics including: total number
+							of registered users; number of currently logged-in users; chatroom statistics; new
+							messageboard messages since your last visit; etc.
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>

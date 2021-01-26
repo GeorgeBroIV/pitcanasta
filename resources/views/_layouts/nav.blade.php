@@ -20,7 +20,7 @@
 							<!-- END Home -->
 							<!-- Dashboard -->
 							<li class="nav-item">
-								<a class="nav-link" href="{{ route('dashboard') }}">
+								<a class="nav-link" href="{{ route('dashboard.index') }}">
 									{{ __('Dashboard') }}
 								</a>
 							</li>

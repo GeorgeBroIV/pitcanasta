@@ -50,7 +50,7 @@
     Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
     // Dashboard view
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard')->middleware('auth');
+    Route::resource('/dashboard', 'DashboardController')->middleware('auth');
 
     // The 'get' route handles what would normally result in an untrapped error (e.g. a user right-clicking "Logout" and opening in a new tab).
     Route::get('/logout', 'Auth\LogoutController@logout')->name('logout')->middleware('auth');
