@@ -18,6 +18,9 @@
 							Developer Updates
 						</h4>
 						<p>
+							1/25/2021: The Profiles section has now been added, along with several code refactors.
+						</p>
+						<p>
 							1/20/2021: Several 'Admin' features were added, along with several code refactors.
 						</p>
 						<p>
