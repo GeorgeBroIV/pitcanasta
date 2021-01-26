@@ -55,7 +55,7 @@ class Handler extends ExceptionHandler
             return redirect('login')->with(['message' => 'Your session expired due to inactivity, please log back in.']);
         } elseif (!$this->isHttpException($exception)) {
             $exception = new HttpException(500);
-            return redirect()->route('/');
+            return redirect()->route('home');
         } else {
             dd("hi3");
         }
