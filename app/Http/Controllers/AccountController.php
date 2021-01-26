@@ -9,6 +9,7 @@
     use App\Traits\ModelUpdateTrait;
     use App\Traits\UploadTrait;
     use Illuminate\Http\RedirectResponse;
+    use Illuminate\Http\Request;
 
     class AccountController extends Controller
     {
@@ -40,11 +41,15 @@
         /**
          * View profile view
          *
+         * @param Request
          * @param integer $id
-         * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+         * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|RedirectResponse
          */
-        public function edit($id)
+        public function edit(Request $request, $id)
         {
+            if($request->id != Auth()->user()->id) {
+                return redirect()->route('home');
+            }
             $user = User::find($id);
             return view('account.edit', compact('user'));
         }
@@ -58,9 +63,6 @@
          */
         public function update(ModelUpdateRequest $request)
         {
-            if($request->id != Auth()->user()->id) {
-                return redirect->route('home');
-            }
             $model = User::find(Auth()->user()->id);
             $this->updateModel($this->modelName,$model, $request);
         
