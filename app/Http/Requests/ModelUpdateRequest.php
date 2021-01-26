@@ -38,13 +38,12 @@
          */
         protected function prepareForValidation()
         {
-dd("ModelUpdateRequest->prepareForValidation");
             // Identify fields that are to undergo validation / sanitation (e.g. non-unique)
             $return = $this->fieldsToProcess();
             $this->fieldsUnique = $return[0];
             $this->fields = $return[1];
             $this->modelName = $return[2];
-            
+dd($return);
             // Sanitize the Request Input Data
             // $this->sanitizeData();
         }
