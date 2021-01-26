@@ -45,7 +45,7 @@
             $this->modelName = $return[2];
             // Sanitize the Request Input Data
             // $this->sanitizeData();
-dd("Fields", $this->fields);
+dd($return);
         }
     
         /**
