@@ -36,6 +36,10 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        if(!$this->isHttpException($e)) {
+            $e = new \Symfony\Component\HttpKernel\Exception\HttpException(500);
+        }
+        return parent::render($request, $e);
         $this->reportable(function (Throwable $e) {
             //
         });
