@@ -16,6 +16,9 @@
 							Number of Verified Users: {{ $usersVerifiedCount }}
 						</p>
 						<p>
+							Number of Invisible Users: {{ $usersInvisibleCount }}
+						</p>
+						<p>
 							When developed, this dashboard will display real-time statistics including: total number
 							of registered users; number of currently logged-in users; chatroom statistics; new
 							messageboard messages since your last visit; etc.

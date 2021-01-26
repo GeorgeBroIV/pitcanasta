@@ -25,10 +25,19 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth()->user();
+        
+        // Get 'Registered Users' count
         $users = User::all();
+        $userCount = count($users);
+        
+        // Get 'Verified Users' count
         $usersVerified = $users->where('email_verified_at', '<>', null);
         $usersVerifiedCount = count($usersVerified);
-        $userCount = count($users);
-        return view('dashboard', compact('user', 'userCount', 'usersVerifiedCount'));
+    
+        // Get 'Invisible Users' count
+        $usersInvisible = $users->where('visible', '=', false);
+        $usersInvisibleCount = count($usersInvisible);
+        
+        return view('dashboard', compact('user', 'userCount', 'usersVerifiedCount', 'usersInvisibleCount'));
     }
 }
