@@ -78,7 +78,7 @@
          * @param int $id
          * @return \Illuminate\Http\RedirectResponse
          */
-        public function show($id)
+        public function show()
         {
             return redirect()->route('users.index');
         }
