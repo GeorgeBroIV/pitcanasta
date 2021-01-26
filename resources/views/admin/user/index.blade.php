@@ -19,7 +19,11 @@
 	                            <table>
 	                                @include('admin.user.tablehead')
 	                                @foreach($users as $user)
-	                                    <tr style="border-bottom: 1px solid lightgray">
+			                            @if($user->active)
+				                            <tr style="border-bottom: 1px solid lightgray">
+			                            @else
+				                            <tr style="background-color: lightgrey; border-bottom: 1px solid darkgrey">
+			                            @endif
 		                                    <td style="padding: 10px">
 			                                    {{ $user->username }}
 		                                    </td>
