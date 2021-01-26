@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Throwable;
@@ -51,13 +52,9 @@ class Handler extends ExceptionHandler
     public function render($request, $exception){
         if ($exception instanceof TokenMismatchException) {
             return redirect('login')->with(['message' => 'Your session expired due to inactivity, please log back in.']);
-        } else {
-            // Custom error 500 view on production
-            if (app()->environment() == 'production') {
-                return redirect()->route('/');
-            }
+        } elseif(!$this->isHttpException($exception)) {
+            $exception = new HttpException(500);
             return parent::render($request, $exception);
         }
-        return parent::render($request, $exception);
     }
 }
