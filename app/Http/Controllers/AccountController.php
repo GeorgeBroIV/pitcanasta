@@ -2,34 +2,33 @@
     
     namespace App\Http\Controllers;
     
-    use App\Http\Requests\AccountUpdateRequest;
+    use App\Http\Requests\ModelUpdateRequest;
     use App\Models\Auth\User;
     use App\Traits\RolesTrait;
     use App\Traits\InputValidateTrait;
     use App\Traits\ModelUpdateTrait;
     use App\Traits\UploadTrait;
     use Illuminate\Http\RedirectResponse;
-    
+
     class AccountController extends Controller
     {
         use UploadTrait, InputValidateTrait, RolesTrait, ModelUpdateTrait;
-
-        /**
-         * The model this Request Validation uses.
-         */
-        public $modelName = "User";
     
         /**
          * The model's input fields to undergo validation checks (modify as applicable).
          */
-        public $fields = [
-            'firstname',
-            'lastname',
-            'displayname',
-            'avatar',
-            'visible'
+        public $modelName = "User";
+    
+        /**
+
+        /**
+         * The model's input fields to undergo validation checks (modify as applicable).
+         */
+        public $fieldsUnique = [
+            'username',
+            'email',
         ];
-        
+
         /**
          * Authenticate via middleware
          */
@@ -41,28 +40,28 @@
         /**
          * View profile view
          *
+         * @param integer $id
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
          */
-        public function index()
+        public function edit($id)
         {
-            $user = Auth()->user();
-            return view('account', compact('user'));
+            $user = User::find($id);
+            return view('account.edit', compact('user'));
         }
-        
+
         /**
-         * Method to update profile, where the $request is passed to AccountUpdateRequest class for sanitization and
+         * Method to update profile, where the $request is passed to ModelUpdateRequest class for sanitization and
          * validation when this method is called (and before executing the first statement within the method).
          *
-         * @param  AccountUpdateRequest $request
+         * @param  ModelUpdateRequest $request
          * @return RedirectResponse
          */
-        public function edit(AccountUpdateRequest $request)
+        public function update(ModelUpdateRequest $request)
         {
-            $model = new User;
-            $model = $model->find(Auth()->user()->id);
-            $this->updateModel($model, $this->fields, $request);
+            $model = User::find(Auth()->user()->id);
+            $this->updateModel($this->modelName,$model, $request);
         
             // And then return user back and show a flash message
-            return redirect()->back()->with(['status' => 'Account updated successfully.']);
+            return redirect()->route('home');
         }
     }

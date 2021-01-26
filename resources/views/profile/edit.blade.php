@@ -1,16 +1,13 @@
 @extends('_layouts.app')
 
 @section('content')
-	@isAdmin
+	@isVerified
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-10">
-				<div style="font-size: x-large; padding-bottom: 10px; text-align: center">
-					Website Administration Subsite
-				</div>
 				<div class="card">
 					<div class="card-header" style="font-size: medium">
-						Create a new User Role
+						Edit your Profile&nbsp; '{{ $profile->name }}'
 					</div>
 					<div class="col-12">
 						@if ($errors->any())
@@ -30,8 +27,13 @@
 						@endif
 					</div>
 					<div class="card-body">
-						<form action="{{ route('roles.store') }}" method="post">
-						@csrf
+						<form action="{{ route('profiles.update', $profile->id) }}" method="post" role="form"
+						      enctype="multipart/form-data">
+							@method('PUT')
+							@csrf
+							<!-- START - Hidden Form to transmit $profile->id -->
+								<input id="id" name="id" type="hidden" value="{{ $profile->id }}">
+							<!-- END - Hidden Form -->
 							<!-- START - Name -->
 							<div class="form-group row">
 								<label for="name" class="col-md-2 col-form-label text-md-right">
@@ -39,57 +41,67 @@
 								</label>
 								<div class="col-md-auto">
 									<input id="name" name="name" type="text" class="form-control"
-									       value="{{ old('name', '') }}" autofocus>
+									       value="{{ old('name', $profile->name) }}" disabled>
 								</div>
 							</div>
 							<!-- END - Name -->
-							<!-- START - Description -->
+							<!-- START - Avatar -->
 							<div class="form-group row">
-								<label for="description" class="col-md-2 col-form-label text-md-right">
-									Description
-								</label>
-								<div class="col-md-auto">
-									<input id="description" name="description" type="text" class="form-control"
-									       value="{{ old('description', '') }}">
-								</div>
+								@if ($profile->avatar)
+									<div class="col-md-2 text-md-right">
+										<img src="{{ asset('storage/'.$profile->avatar) }}" style="width: 40px; height:
+										40px; border-radius: 50%">
+									</div>
+									<span class="form-text col-auto">
+                                        <label for="avatar" style="cursor: pointer" class="btn-sm
+                                        btn-secondary">
+	                                        Change
+                                        </label>
+                                        <input id="avatar" type="file" class="form-control" name="avatar" style="visibility: hidden; opacity: 0; position: absolute; z-index: -1">
+										&nbsp;&nbsp;
+										or
+										&nbsp;&nbsp;
+                                        <label for="avatarDelete">
+	                                        Delete
+                                        </label>
+										&nbsp;
+										<input id="avatarDelete" name="avatarDelete" type="checkbox">
+                                    </span>
+								@else
+									<label for="avatar" class="col-md-2 col-form-label text-md-right">
+										Avatar
+									</label>
+									<div class="col-md-auto">
+										<input id="avatar" type="file" class="form-control" name="avatar">
+									</div>
+								@endif
 							</div>
-							<!-- END - Description -->
-							<!-- START - Active -->
+							<!-- END - Avatar -->
 							<div class="form-group row">
-								<label for="active" class="col-md-2 col-form-label text-md-right">
-									Active
+								<label for="visible" class="col-md-2 col-form-label text-md-right">
+									Visible
 								</label>
 								<div class="col-md-auto">
-									<select id="active" name="active" class="form-control-sm form-text">
+									<select id="visible" name="visible" class="form-control-sm form-text">
+										@if(isset($profile->visible) && $profile->visible)
 											<option value="1" selected>Yes</option>
 											<option value="0">No</option>
+										@else
+											<option value="1">Yes</option>
+											<option value="0" selected>No</option>
+										@endif
 									</select>
 								</div>
 							</div>
-							<!-- END - Active -->
-							<!-- START - Protected -->
-							@isDeveloper    <!-- Only Developers can set this property upon Creation -->
-								<div class="form-group row">
-									<label for="protect" class="col-md-2 col-form-label text-md-right">
-										Protected
-									</label>
-									<div class="col-md-auto">
-										<select id="protect" name="protect" class="form-control-sm form-text">
-											<option value="1">Yes</option>
-											<option value="0" selected>No</option>
-										</select>
-									</div>
-								</div>
-							@endisDeveloper
-							<!-- END - Protected -->
+							<!-- END - Visible -->
 							<!-- START - Notes -->
 							<div class="form-group row">
 								<label for="notes" class="col-md-2 col-form-label text-md-right">
 									Notes
 								</label>
-								<div class="col-md-10">
+								<div class="col-md-8">
 									<input id="notes" name="notes" type="text" class="form-control"
-									       value="{{ old('notes', '') }}">
+									       value="{{ old('notes', $profile->notes) }}" autofocus>
 								</div>
 							</div>
 							<!-- END - Notes -->
@@ -101,12 +113,12 @@
 			                            </button>
 		                            </span>
 								<span style="padding-left: 5px; padding-right: 5px">
-		                            <a href="{{ route('roles.create') }}" class="btn-sm btn-secondary">
+		                            <a href="{{ route('profiles.edit', $profile->id) }}" class="btn-sm btn-secondary">
 			                            Reset Values
 		                            </a>
 	                            </span>
 								<span style="padding-left: 5px; padding-right: 5px">
-		                            <a href="{{ route('roles.index') }}" class="btn-sm btn-dark">
+		                            <a href="{{ route('profiles.index') }}" class="btn-sm btn-dark">
 			                            Cancel and Exit
 		                            </a>
 	                            </span>
@@ -118,5 +130,5 @@
 			</div>
 		</div>
 	</div>
-	@endisAdmin
+	@endisVerified
 @endsection

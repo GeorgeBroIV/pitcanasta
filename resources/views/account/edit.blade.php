@@ -31,8 +31,9 @@
 											</ul>
 										</div>
 									@endif
-									<form action="{{ route('account.edit') }}" method="POST" role="form"
+									<form action="{{ route('account.update', $user->id) }}" method="POST" role="form"
 									      enctype="multipart/form-data">
+										@method('put')
 										@csrf
 										<!-- START - User Name (disabled) -->
 										<!-- TODO Add Ability to Change User Name, with validation constraints -->
@@ -142,7 +143,8 @@
 													Save Account Changes
 												</button>
 												&nbsp;&nbsp;
-												<a href="{{ route('account') }}" class="btn-sm btn-secondary">
+												<a href="{{ route('account.edit', $user->id) }}" class="btn-sm
+												btn-secondary">
 													Reset Values
 												</a>
 												&nbsp;&nbsp;

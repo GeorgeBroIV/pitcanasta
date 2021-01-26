@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProfilesTable extends Migration
+class CreateSanitizesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,16 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('sanitizes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
             $table->string('name')->unique();
-            $table->string('avatar')->nullable();
-            $table->smallInteger('rating')->nullable();
-            $table->boolean('visible')->default(1);
-            $table->boolean('active')->default(1);
+            $table->string('phpcommand');
+            $table->string('description')->nullable();
             $table->text('notes')->nullable();
-            $table->timestamps();
-            $table->foreignId('created_by')->nullable();
             $table->foreignId('updated_by')->nullable();
-            $table->softDeletes();
-
             $table->foreignId('deleted_by')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -38,6 +33,6 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('sanitizes');
     }
 }

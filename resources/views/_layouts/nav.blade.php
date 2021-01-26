@@ -88,10 +88,10 @@
 										</a>
 									@endif
 									@isVerified
-										<a class="dropdown-item" href="{{ route('account') }}">
+										<a class="dropdown-item" href="{{ route('account.edit', auth()->user()->id) }}">
 											{{ __('Account') }}
 										</a>
-										<a class="dropdown-item" href="{{ route('profile.index') }}">
+										<a class="dropdown-item" href="{{ route('profiles.index') }}">
 											{{ __('Profiles') }}
 										</a>
 									@endisVerified

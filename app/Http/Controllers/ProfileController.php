@@ -2,17 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\ModelUpdateRequest;
+use App\Models\Auth\User;
 use App\Models\Profile;
-use Illuminate\Http\Request;
+use App\Traits\ModelUpdateTrait;
 use App\Traits\RolesTrait;
 use App\Traits\InputValidateTrait;
 use App\Traits\UploadTrait;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    use UploadTrait, InputValidateTrait, RolesTrait;
+    use UploadTrait, InputValidateTrait, RolesTrait, ModelUpdateTrait;
+
+    /**
+     * The model's input fields to undergo validation checks (modify as applicable).
+     */
+    public $modelName = "Profile";
+
+    /**
+     * The model's input fields to undergo validation checks (modify as applicable).
+     */
+    public $fieldsUnique = [
+        'name',
+    ];
+    
+    public $profilesMax = 10;
     
     /**
      * Authenticate via middleware
@@ -30,134 +45,109 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth()->user();
-        $profiles = Profile::get();
-        return view('profile.index', compact(['user', 'profiles']));
+        $id = $user->id;
+        $profiles=User::find($id)->profiles()->get();
+        $profiles->toArray();
+        $profilesMax = $this->profilesMax;
+
+        return view('profile.index', compact(['user', 'profiles', 'profilesMax']));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function create()
     {
-        //
+        // Test to see if Number of Profiles exceeds the maximum
+        $user = Auth()->user();
+        $id = $user->id;
+        $profiles=User::find($id)->profiles()->get();
+        $profilesCount = count($profiles);
+        if($profilesCount < $this->profilesMax)
+        {
+            return view('profile.create');
+        }
+        else
+        {
+            return redirect()->route('profiles.index');
+        }
     }
-
+    
     /**
-     * Store a newly created resource in storage.
+     * Create a new resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ModelUpdateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ModelUpdateRequest $request)
     {
-        //
+        $model = new Profile();
+        $this->updateModel($this->modelName, $model, $request);
+    
+        // Once the Table is updated, redirect the user to see the list of all Roles
+        return redirect()->route('profiles.index');
     }
-
+    
     /**
-     * Display the specified resource.
+     * Show the specified resource.
      *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(Profile $profile)
+    public function show(Request $request)
     {
-        //
+        // Passthrough to '$this->edit' method via route
+        return redirect()->route('profiles.edit', $request->id);
     }
     
     /**
      * Method to update game profile, where the $request is passed to ProfileUpdateRequest class for validation
      * when this method is called (and before executing the first statement within the method).
      *
-     * @param  ProfileUpdateRequest $request
-     * @param  \App\Models\Profile  $profile
-     * @return RedirectResponse
+     * @param  integer $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(ProfileUpdateRequest $request)
+    public function edit($id)
     {
-        /* Validation passed if we arrive here */
-        
-        // Get current user
         $user = Auth()->user();
-        
-        /* First Name */
-        // If user changes first name (i.e. different than what is stored in database)
-        if($request->firstname != $user->firstname) {
-            $user->firstname = $request->firstname;
-        }
-        
-        /* Last Name */
-        // If user changes last name (i.e. different than what is stored in database)
-        if($request->lastname != $user->lastname) {
-            $user->lastname = $request->lastname;
-        }
-        
-        /* Display Name */
-        // If user changes display name (i.e. different than what is stored in database)
-        if($request->displayname  != $user->displayname) {
-            $user->displayname = $request->displayname;
-        }
-        
-        /* Avatar */
-        // If user deletes avatar (i.e. different than what is stored in database)
-        if(!empty($request->file('avatar'))) {
-            // Get image file
-            $image = $request->file('avatar');
-            
-            // Make a image name based on user name and current timestamp
-            $name = $user->username.'_'.time();
-            
-            // Define folder path
-            $folder = '/uploads/images/avatar_profile/';
-            
-            // Make a file path where image will be stored [ folder path + file name + file extension]
-            $filePath = $folder.$name.'.'.$image->getClientOriginalExtension();
-            
-            // Add Code to test if an avatar is present.  If so, delete the local file
-            if(isset($user->avatar)) {
-                $this->deleteOne($user->avatar);
-            }
-            
-            // Upload image
-            $this->uploadOne($image, $folder, 'public', $name);
-            
-            // Set user profile image path in database to filePath
-            $user->avatar = $filePath;
-            
-        } elseif(isset($user->avatar) && $request->avatarDelete == "on") {
-            // If the user wishes to delete the avatar, delete the local file and remove the avatar from database
-            $this->deleteOne($user->avatar);
-            $user->avatar = null;
-        }
-        
-        // Save the updates to the database table
-        $user->save();
-        
-        // And then return user back and show a flash message
-        return redirect()->back()->with(['status' => 'Profile updated successfully.']);
+        $profile = Profile::find($id);
+        //
+        return view('profile.edit', compact('user', 'profile'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ModelUpdateRequest  $request
      * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Profile $profile)
+    public function update(ModelUpdateRequest $request)
     {
-        //
+        $model = Profile::find($request->id);
+        $this->updateModel($this->modelName, $model, $request);
+    
+        // And then return user back and show a flash message
+        return redirect()->route('profiles.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Profile $profile)
+    public function destroy($id)
     {
-        //
+        // Get specified Role
+        $profile = Profile::find($id);
+    
+        // Delete the Model from the Table
+        $profile->delete();
+    
+        // Once the Table is updated, redirect the user to see the list of all Roles
+        return redirect()->route('profiles.index');
     }
 }

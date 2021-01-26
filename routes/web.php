@@ -63,11 +63,12 @@
     */
 
     // Account Routes
-    Route::get('/account', 'AccountController@index')->name('account')->middleware('verified');
-    Route::post('/account/edit', 'AccountController@edit')->name('account.edit')->middleware('verified');
+    Route::resource('/account', 'AccountController')->middleware('verified');
     
     // Profile Routes
-    Route::resource('/profile', 'ProfileController')->middleware('verified');
+    Route::resource('/profiles', 'ProfileController')->middleware('verified');
+    // Forced route to call 'Destroy' from href (which only has 'GET' form method instead of required 'DELETE' method
+    Route::get('/profiles/delete/{id}', ['as' => 'profiles.delete', 'uses' => 'ProfileController@destroy'])->middleware('verified');
     
     /*
     |--------------------------------------------------------------------------

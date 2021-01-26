@@ -91,9 +91,9 @@
         }
 
         /**
-         * The Users that have Game Profiles.
+         * The Users that have Game Profile.
          */
-        public function profile()
+        public function profiles()
         {
             return $this->hasMany(Profile::class);
         }

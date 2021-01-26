@@ -48,7 +48,7 @@ class RoleUpdateRequest extends FormRequest
         'order',
         'description',
         'active',
-        'protected'
+        'protect'
     ];
     
     /**

@@ -1,16 +1,13 @@
 @extends('_layouts.app')
 
 @section('content')
-	@isAdmin
+	@isVerified
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-10">
-				<div style="font-size: x-large; padding-bottom: 10px; text-align: center">
-					Website Administration Subsite
-				</div>
 				<div class="card">
 					<div class="card-header" style="font-size: medium">
-						Create a new User Role
+						Create a new Profile
 					</div>
 					<div class="col-12">
 						@if ($errors->any())
@@ -30,9 +27,10 @@
 						@endif
 					</div>
 					<div class="card-body">
-						<form action="{{ route('roles.store') }}" method="post">
+						<form action="{{ route('profiles.store') }}" method="post" role="form"
+						      enctype="multipart/form-data">
 						@csrf
-							<!-- START - Name -->
+						<!-- START - Name -->
 							<div class="form-group row">
 								<label for="name" class="col-md-2 col-form-label text-md-right">
 									Name
@@ -43,6 +41,16 @@
 								</div>
 							</div>
 							<!-- END - Name -->
+							<!-- START - Avatar -->
+							<div class="form-group row">
+								<label for="avatar" class="col-md-2 col-form-label text-md-right">
+									Avatar
+								</label>
+								<div class="col-md-auto">
+									<input id="avatar" type="file" class="form-control" name="avatar">
+								</div>
+							</div>
+							<!-- END - Avatar -->
 							<!-- START - Description -->
 							<div class="form-group row">
 								<label for="description" class="col-md-2 col-form-label text-md-right">
@@ -54,42 +62,27 @@
 								</div>
 							</div>
 							<!-- END - Description -->
-							<!-- START - Active -->
+							<!-- START - Visible -->
 							<div class="form-group row">
-								<label for="active" class="col-md-2 col-form-label text-md-right">
-									Active
+								<label for="visible" class="col-md-2 col-form-label text-md-right">
+									Visible
 								</label>
 								<div class="col-md-auto">
-									<select id="active" name="active" class="form-control-sm form-text">
-											<option value="1" selected>Yes</option>
-											<option value="0">No</option>
+									<select id="visible" name="visible" class="form-control-sm form-text">
+										<option value="1" selected>Yes</option>
+										<option value="0">No</option>
 									</select>
 								</div>
 							</div>
-							<!-- END - Active -->
-							<!-- START - Protected -->
-							@isDeveloper    <!-- Only Developers can set this property upon Creation -->
-								<div class="form-group row">
-									<label for="protect" class="col-md-2 col-form-label text-md-right">
-										Protected
-									</label>
-									<div class="col-md-auto">
-										<select id="protect" name="protect" class="form-control-sm form-text">
-											<option value="1">Yes</option>
-											<option value="0" selected>No</option>
-										</select>
-									</div>
-								</div>
-							@endisDeveloper
-							<!-- END - Protected -->
+							<!-- END - Visible -->
 							<!-- START - Notes -->
 							<div class="form-group row">
 								<label for="notes" class="col-md-2 col-form-label text-md-right">
 									Notes
 								</label>
 								<div class="col-md-10">
-									<input id="notes" name="notes" type="text" class="form-control"
-									       value="{{ old('notes', '') }}">
+									<input id="notes" name="notes" type="text" class="form-control" value="{{ old
+									('notes', '') }}">
 								</div>
 							</div>
 							<!-- END - Notes -->
@@ -101,12 +94,12 @@
 			                            </button>
 		                            </span>
 								<span style="padding-left: 5px; padding-right: 5px">
-		                            <a href="{{ route('roles.create') }}" class="btn-sm btn-secondary">
+		                            <a href="{{ route('profiles.create') }}" class="btn-sm btn-secondary">
 			                            Reset Values
 		                            </a>
 	                            </span>
 								<span style="padding-left: 5px; padding-right: 5px">
-		                            <a href="{{ route('roles.index') }}" class="btn-sm btn-dark">
+		                            <a href="{{ route('profiles.index') }}" class="btn-sm btn-dark">
 			                            Cancel and Exit
 		                            </a>
 	                            </span>
@@ -118,5 +111,5 @@
 			</div>
 		</div>
 	</div>
-	@endisAdmin
+	@endisVerified
 @endsection

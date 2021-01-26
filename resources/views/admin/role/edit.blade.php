@@ -42,8 +42,8 @@
 			                            Name
 		                            </label>
 		                            <div class="col-md-auto">
-			                            <input id="name" name="name" type="text" class="form-control"
-			                                   value="{{ old('name', $role->name) }}" autofocus>
+			                            <input id="username" name="username" type="text" class="form-control"
+			                                   value="{{ old('name', $role->name) }}" disabled>
 		                            </div>
 	                            </div>
 	                            <!-- END - Name -->
@@ -54,7 +54,7 @@
 		                            </label>
 		                            <div class="col-md-auto">
 			                            <input id="description" name="description" type="text" class="form-control"
-			                                   value="{{ old('description', $role->description) }}">
+			                                   value="{{ old('description', $role->description) }}" autofocus>
 		                            </div>
 	                            </div>
 	                            <!-- END - Description -->

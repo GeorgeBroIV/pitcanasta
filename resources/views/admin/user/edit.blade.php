@@ -43,7 +43,7 @@
 					                    </label>
 					                    <div class="col-md-auto">
 						                    <input id="username" name="username" type="text" class="form-control"
-						                           value="{{ old('username', $user->username) }}" autofocus>
+						                           value="{{ old('username', $user->username) }}" disabled>
 					                    </div>
 				                    </div>
 				                    <!-- END - User Name -->
@@ -54,7 +54,7 @@
 					                    </label>
 					                    <div class="col-md-auto">
 						                    <input id="firstname" name="firstname" type="text" class="form-control"
-						                           value="{{ old('firstname', $user->firstname) }}">
+						                           value="{{ old('firstname', $user->firstname) }}" disabled>
 					                    </div>
 				                    </div>
 				                    <!-- END - First Name -->
@@ -65,7 +65,7 @@
 					                    </label>
 					                    <div class="col-md-auto">
 						                    <input id="lastname" name="lastname" type="text" class="form-control"
-						                           value="{{ old('lastname', $user->lastname) }}">
+						                           value="{{ old('lastname', $user->lastname) }}" disabled>
 					                    </div>
 				                    </div>
 				                    <!-- END - Last Name -->
@@ -76,7 +76,7 @@
 					                    </label>
 					                    <div class="col-md-auto">
 						                    <input id="displayname" name="displayname" type="text" class="form-control"
-						                           value="{{ old('displayname', $user->displayname) }}">
+						                           value="{{ old('displayname', $user->displayname) }}" disabled>
 					                    </div>
 				                    </div>
 				                    <!-- END - Display Name -->
@@ -87,56 +87,40 @@
 					                    </label>
 					                    <div class="col-md-6">
 						                    <input id="email" name="email" type="text" class="form-control"
-						                           value="{{ old('email', $user->email) }}">
+						                           value="{{ old('email', $user->email) }}" disabled>
 					                    </div>
 				                    </div>
 				                    <!-- END - E-mail -->
 				                    <!-- START - Avatar -->
 				                    <div class="form-group row">
 					                    @if ($user->avatar)
-						                    <div class="col-md-3 text-md-right">
-							                    <img src="{{ asset('storage/'.$user->avatar) }}" style="width: 40px; height: 40px; border-radius: 50%">
+						                    <div class="col-md-3 col-form-label text-md-right">
+							                    Avatar
 						                    </div>
-						                    <span class="form-text col-auto">
-			                                        <label for="avatar" style="cursor: pointer" class="btn-sm
-			                                        btn-secondary">
-				                                        Change
-			                                        </label>
-			                                        <input id="avatar" type="file" class="form-control" name="avatar" style="visibility: hidden; opacity: 0; position: absolute; z-index: -1">
-													&nbsp;&nbsp;
-													or
-													&nbsp;&nbsp;
-			                                        <label for="avatarDelete">
-				                                        Delete
-			                                        </label>
-													&nbsp;
-													<input id="avatarDelete" name="avatarDelete" type="checkbox">
-	                                            </span>
+						                    <div class="form-text col-auto">
+							                    <img src="{{ asset('storage/'.$user->avatar) }}" style="width: 40px; height: 40px; border-radius: 50%">
+	                                        </div>
 					                    @else
 						                    <label for="avatar" class="col-md-3 col-form-label text-md-right">
 							                    Avatar
 						                    </label>
-						                    <div class="col-md-6">
-							                    <input id="avatar" type="file" class="form-control" name="avatar">
+						                    <div class="col-md-auto">
+							                    None
 						                    </div>
 					                    @endif
 				                    </div>
 				                    <!-- END - Avatar -->
 				                    <!-- START - Visible -->
 				                    <div class="form-group row">
-					                    <label for="visible" class="col-md-3 col-form-label text-md-right">
+					                    <div class="col-md-3 col-form-label text-md-right">
 						                    Visible
-					                    </label>
-					                    <div class="col-md-auto">
-						                    <select id="visible" name="visible" class="form-control-sm form-text">
+					                    </div>
+					                    <div class="col-md-auto col-form-label text-md-left">
 							                    @if(isset($user->visible) && $user->visible)
-								                    <option value="1" selected>Yes</option>
-								                    <option value="0">No</option>
+								                    Yes
 							                    @else
-								                    <option value="1">Yes</option>
-								                    <option value="0" selected>No</option>
+								                    No
 							                    @endif
-						                    </select>
 					                    </div>
 				                    </div>
 				                    <!-- END - Visible -->
@@ -158,8 +142,6 @@
 					                    </div>
 				                    </div>
 				                    <!-- END - Active -->
-
-
 				                    <!-- START - Notes -->
 				                    <div class="form-group row">
 					                    <label for="notes" class="col-md-3 col-form-label text-md-right">
@@ -167,7 +149,7 @@
 					                    </label>
 					                    <div class="col-md-8">
 						                    <input id="notes" name="notes" type="text" class="form-control"
-						                           value="{{ old('notes', $user->notes) }}">
+						                           value="{{ old('notes', $user->notes) }}" autofocus>
 					                    </div>
 				                    </div>
 				                    <!-- END - Notes -->

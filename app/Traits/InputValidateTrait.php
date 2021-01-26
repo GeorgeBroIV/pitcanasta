@@ -24,7 +24,7 @@
          */
         public function ValidationInputRules($model, $fields)
         {
-            if($model = "User") {
+            if($model == "User") {
                 // This returns a single-dimension array where each element's key is the field and the value is the rule
                 foreach ($fields as $field) {
                     switch ($field) {
@@ -59,12 +59,12 @@
                             $rules[$field] = 'boolean';
                             break;
                         case 'notes':
-                            $rules[$field] = 'nullable|regex:/^[A-Z][a-zA-Z0-9_-]+$/';
+                            $rules[$field] = 'nullable|max:100|regex:/^[A-Z][a-zA-Z0-9. _-]+$/';
                             break;
                     }
                 }
             }
-            elseif($model = "Role") {
+            elseif($model == "Role") {
                 // This returns a single-dimension array where each element's key is the field and the value is the rule
                 foreach ($fields as $field) {
                     switch ($field) {
@@ -75,13 +75,38 @@
                             $rules[$field] = 'integer|unique';
                             break;
                         case 'description':
-                            $rules[$field] = 'required|min:2|max:30|regex:/^[A-Z][a-zA-Z0-9_-]+$/';
+                            $rules[$field] = 'required|max:15|regex:/^[A-Z][a-zA-Z0-9 _-]+$/';
                             break;
                         case 'active':
                             $rules[$field] = 'boolean';
                             break;
-                        case 'protected':
+                        case 'protect':
                             $rules[$field] = 'boolean';
+                            break;
+                        case 'notes':
+                            $rules[$field] = 'nullable|max:100|regex:/^[A-Z][a-zA-Z0-9. _-]+$/';
+                            break;
+                    }
+                }
+            }
+            elseif($model == "Profile") {
+                // This returns a single-dimension array where each element's key is the field and the value is the rule
+                foreach ($fields as $field) {
+                    switch ($field) {
+                        case 'name':
+                            $rules[$field] = 'required|min:2|max:20|unique:profiles,name|regex:/^[a-zA-Z0-9_-]+$/';
+                            break;
+                        case 'avatar':
+                            $rules[$field] = 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048';
+                            break;
+                        case 'visible':
+                            $rules[$field] = 'boolean';
+                            break;
+                        case 'active':
+                            $rules[$field] = 'boolean';
+                            break;
+                        case 'notes':
+                            $rules[$field] = 'nullable|max:100|regex:/^[A-Z][a-zA-Z0-9. _-]+$/';
                             break;
                     }
                 }
@@ -101,7 +126,7 @@
             // This returns a single-dimension array where each element's key is the field and the value is the rule
             $messages = [];
     
-            if($model = "User") {
+            if($model == "User") {
                 foreach($fields as $field) {
                     switch ($field) {
                         case 'username':
@@ -175,50 +200,94 @@
                             break;
                         case 'notes':
                             $messages = array_merge($messages, [
+                                'notes.max' => 'Notes cannot exceed 100 characters.',
                                 'notes.regex' => 'Notes can only start with a capital letter and can only contain letters, numbers, dashes and underscores.'
                             ]);
                             break;
                     }
                 }
             }
-            elseif ($model = "Role") {
+            elseif ($model == "Role") {
                 foreach($fields as $field) {
-                switch ($field) {
-                    case 'name':
-                        $messages = array_merge($messages, [
-                            'name.required' => 'Role Name is required.',
-                            'name.min' => 'Role Name must be at least 2 characters.',
-                            'name.max' => 'Role Name cannot exceed 20 characters.',
-                            'name.unique' => 'Role Name is already taken, please choose another.',
-                            'name.regex' => 'Role Name can only start with a capital letter and can only contain letters, numbers, dashes and underscores.'
-                        ]);
-                        break;
-                    case 'order':
-                        $messages = array_merge($messages, [
-                            'order.integer' => 'Order needs to be a number.',
-                            'order.unique' => 'Order is already taken, please choose another.'
-                        ]);
-                        break;
-                    case 'description':
-                        $messages = array_merge($messages, [
-                            'description.required' => 'Description is required.',
-                            'description.min' => 'Description must be at least 2 characters.',
-                            'description.max' => 'Description cannot exceed 30 characters.',
-                            'description.regex' => 'Description can only start with a capital letter and can only contain letters, numbers, dashes and underscores.'
-                        ]);
-                        break;
-                    case 'active':
-                        $messages = array_merge($messages, [
-                            'active.boolean' => 'Active must be a boolean (true, false, 0, 1).'
-                        ]);
-                        break;
-                    case 'protected':
-                        $messages = array_merge($messages, [
-                            'protected.boolean' => 'Protected must be a boolean (true, false, 0, 1).'
-                        ]);
-                        break;
+                    switch ($field) {
+                        case 'name':
+                            $messages = array_merge($messages, [
+                                'name.required' => 'Role Name is required.',
+                                'name.min' => 'Role Name must be at least 2 characters.',
+                                'name.max' => 'Role Name cannot exceed 20 characters.',
+                                'name.unique' => 'Role Name is already taken, please choose another.',
+                                'name.regex' => 'Role Name can only start with a capital letter and can only contain letters, numbers, dashes and underscores.'
+                            ]);
+                            break;
+                        case 'order':
+                            $messages = array_merge($messages, [
+                                'order.integer' => 'Order needs to be a number.',
+                                'order.unique' => 'Order is already taken, please choose another.'
+                            ]);
+                            break;
+                        case 'description':
+                            $messages = array_merge($messages, [
+                                'description.required' => 'Description is required.',
+                                'description.max' => 'Description cannot exceed 15 characters.',
+                                'description.regex' => 'Description can only start with a capital letter and can only contain letters, numbers, dashes and underscores.'
+                            ]);
+                            break;
+                        case 'active':
+                            $messages = array_merge($messages, [
+                                'active.boolean' => 'Active must be a boolean (true, false, 0, 1).'
+                            ]);
+                            break;
+                        case 'protect':
+                            $messages = array_merge($messages, [
+                                'protected.boolean' => 'Protected must be a boolean (true, false, 0, 1).'
+                            ]);
+                            break;
+                        case 'notes':
+                            $messages = array_merge($messages, [
+                                'notes.max' => 'Notes cannot exceed 100 characters.',
+                                'notes.regex' => 'Notes can only start with a capital letter and can only contain letters, numbers, dashes and underscores.'
+                            ]);
+                            break;
+                    }
                 }
             }
+            elseif ($model == "Profile") {
+                foreach($fields as $field) {
+                    switch ($field) {
+                        case 'name':
+                            $messages = array_merge($messages, [
+                                'name.required' => 'Profile Name is required.',
+                                'name.min' => 'Profile Name must be at least 2 characters.',
+                                'name.max' => 'Profile Name cannot exceed 20 characters.',
+                                'name.unique' => 'Profile Name is already taken, please choose another.',
+                                'name.regex' => 'Profile Name can only start with a capital letter and can only contain letters, numbers, dashes and underscores.'
+                            ]);
+                            break;
+                        case 'avatar':
+                            $messages = array_merge($messages, [
+                                'avatar.image' => 'Avatar must be a valid image file.',
+                                'avatar.mimes' => 'Avatar must be jpeg, png, jpg, or gif formats.',
+                                'avatar.max' => 'Avatar file size must not exceed 2 MB.'
+                            ]);
+                            break;
+                        case 'visible':
+                            $messages = array_merge($messages, [
+                                'visible.boolean' => 'Visible must be a boolean (true, false, 0, 1).'
+                            ]);
+                            break;
+                        case 'active':
+                            $messages = array_merge($messages, [
+                                'active.boolean' => 'Active must be a boolean (true, false, 0, 1).'
+                            ]);
+                            break;
+                        case 'notes':
+                            $messages = array_merge($messages, [
+                                'notes.max' => 'Notes cannot exceed 100 characters.',
+                                'notes.regex' => 'Notes can only start with a capital letter and can only contain letters, numbers, dashes and underscores.'
+                            ]);
+                            break;
+                    }
+                }
             }
             return $messages;
         }
@@ -265,7 +334,7 @@
                         case 'order':
                             $sanitizes[$field] = 'trim|escape';
                             break;
-                        case 'description':
+                        case 'notes':
                             $sanitizes[$field] = 'trim|capitalize|escape';
                             break;
                     }

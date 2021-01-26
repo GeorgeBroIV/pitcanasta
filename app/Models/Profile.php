@@ -13,7 +13,7 @@ class Profile extends Model
     /**
      * Get the user that has Game Profile.
      */
-    public function post()
+    public function users()
     {
         return $this->belongsTo(User::class);
     }

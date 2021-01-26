@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ModelUpdateRequest;
 use App\Http\Requests\RoleUpdateRequest;
 use App\Models\Auth\Role;
+use App\Traits\InputValidateTrait;
+use App\Traits\RolesTrait;
+use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use App\Traits\ModelUpdateTrait;
 
@@ -20,22 +24,20 @@ use App\Traits\ModelUpdateTrait;
 
 class RoleController extends Controller
 {
-    use ModelUpdateTrait;
+    use UploadTrait, InputValidateTrait, RolesTrait, ModelUpdateTrait;
     
     /**
-     * The model this Request Validation uses.
+     * The Model Name.
      */
     public $modelName = "Role";
+    
+    public $rolesMax = 10;
     
     /**
      * The model's input fields to undergo validation checks (modify as applicable).
      */
-    public $fields = [
+    public $fieldsUnique = [
         'name',
-        'description',
-        'active',
-        'protect',
-        'notes'
     ];
 
     public function __construct() {
@@ -49,7 +51,8 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('admin.role.index', compact('roles'));
+        $rolesMax = $this->rolesMax;
+        return view('admin.role.index', compact('rolesMax','roles'));
     }
     
     /**
@@ -74,20 +77,21 @@ class RoleController extends Controller
     {
         // Get the requested role and display in the view
         $role = Role::find($id);
-        return view('admin.role.edit', compact('role'));
+        $user = Auth()->user();
+        return view('admin.role.edit', compact('user', 'role'));
     }
     
     /**
      * Update the specified resource.
      *
-     * @param RoleUpdateRequest $request
+     * @param ModelUpdateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(RoleUpdateRequest $request)
+    public function update(ModelUpdateRequest $request)
     {
         $model = new Role;
         $model = $model->find($request->id);
-        $this->updateModel($model, $this->fields, $request);
+        $this->updateModel($this->modelName, $model, $request);
 
         // Once the model is updated, redirect the user to see the list of all Roles
         return redirect()->route('roles.index');
@@ -100,17 +104,28 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.role.create');
+    
+        $roles=Role::all();
+        $rolesCount = count($roles);
+        if($rolesCount < $this->rolesMax)
+        {
+            return view('admin.role.create');
+        }
+        else
+        {
+            return redirect()->route('roles.index');
+        }
     }
     
     /**
      * Create a new resource.
      *
-     * @param RoleUpdateRequest $request
+     * @param ModelUpdateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(RoleUpdateRequest $request)
+    public function store(ModelUpdateRequest $request)
     {
+// TODO: Refactor the below to utilize ModelUpdateTrait->updateModel()
         // Create a new Model
         $role = new Role;
 
@@ -130,7 +145,7 @@ class RoleController extends Controller
 
 
 //        $role->protected = $request->protected;
-        $role->protected = 0;
+        $role->protect = 0;
 
         
         $role->notes = $request->notes;
