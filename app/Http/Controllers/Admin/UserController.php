@@ -3,8 +3,12 @@
     namespace App\Http\Controllers\Admin;
     
     use App\Http\Controllers\Controller;
+    use App\Http\Requests\ModelUpdateRequest;
     use App\Models\Auth\User;
+    use App\Traits\InputValidateTrait;
+    use App\Traits\ModelUpdateTrait;
     use App\Traits\RolesTrait;
+    use App\Traits\UploadTrait;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\DB;
     
@@ -24,7 +28,20 @@
     
     class UserController extends Controller
     {
-        use RolesTrait;
+        use UploadTrait, InputValidateTrait, RolesTrait, ModelUpdateTrait;
+    
+        /**
+         * The Model Name.
+         */
+        public $modelName = "User";
+    
+        /**
+         * The model's input fields to undergo validation checks (modify as applicable).
+         */
+        public $fieldsUnique = [
+            'username',
+            'email',
+        ];
         
         /**
          * Controller Constructor
@@ -88,12 +105,13 @@
         /**
          * Show the form for editing the specified resource.
          *
-         * @return \Illuminate\Contracts\Support\Renderable
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Support\Renderable
          */
         public function edit($id)
         {
             /* Data to populate User Role view 'rendered table' column header values */
             // Query the database to obtain Role names
+            $userProtect = User::find($id);
             $roles = DB::table('roles')
                        ->select('name', 'Description', 'active')
                        ->orderBy('order')
@@ -111,19 +129,34 @@
                 $q = $arr->name;
                 array_push($userRoles,$q);
             }
-            return view('admin.user.edit', compact('roles', 'user', 'userRoles'));
+
+            // User cannot edit their own profile via this route
+            if($id == Auth()->user()->id) {
+                return redirect()->route('users.index');
+            }
+// TODO: Users can't edit Accounts of other users with same or higher Roles
+            // User cannot edit Accounts of users with same or higher Roles
+//            elseif('') {
+//                // Test
+//            }
+            else {
+                return view('admin.user.edit', compact('roles', 'user', 'userRoles'));
+            }
         }
-        
+    
         /**
-         * Update the specified resource in storage.
+         * Update the specified resource.
          *
-         * @param  \Illuminate\Http\Request  $request
-         * @param  int  $id
-         * @return \Illuminate\Http\Response
+         * @param ModelUpdateRequest $request
+         * @return \Illuminate\Http\RedirectResponse
          */
-        public function update(Request $request, $id)
+        public function update(ModelUpdateRequest $request)
         {
-            //
+            $model = new User;
+            $model = $model->find($request->id);
+            $this->updateModel($this->modelName, $model, $request);
+            // Once the model is updated, redirect the user to see the list of all Roles
+            return redirect()->route('users.index');
         }
         
         /**

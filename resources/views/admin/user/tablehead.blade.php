@@ -17,6 +17,9 @@
 	<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
 		Verified
 	</th>
+	<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
+		Verified
+	</th>
 
 	<!-- START - Roles -->
 	@if (Route::current()->getName() != 'users.index')

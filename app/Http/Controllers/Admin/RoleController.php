@@ -71,14 +71,19 @@ class RoleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function edit($id)
     {
         // Get the requested role and display in the view
         $role = Role::find($id);
-        $user = Auth()->user();
-        return view('admin.role.edit', compact('user', 'role'));
+        if($role->protect == true) {
+            return redirect()->route('roles.index');
+        }
+        else {
+            $user = Auth()->user();
+            return view('admin.role.edit', compact('user', 'role'));
+        }
     }
     
     /**

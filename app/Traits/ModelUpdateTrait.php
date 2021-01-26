@@ -122,7 +122,7 @@
             
             // Update the 'updated_by' field
             $model->updated_by = $id;
-            
+
             // Save all updates
             $model->save();
 

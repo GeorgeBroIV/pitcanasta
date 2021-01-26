@@ -13,7 +13,7 @@
 	                        Web Application Users
 	                    </div>
 	                    <div class="card-body">
-	                        <form action="{{ route('users.show', $users[0]->id) }}" method="get">
+	                        <form action="{{ route('users.update', $users[0]->id) }}" method="get">
 	                            @method('put')
 	                            @csrf
 	                            <table>
@@ -42,11 +42,19 @@
 					                                No
 				                                @endif
 		                                    </td>
+		                                    <td style="padding: 10px" align="center">
+			                                    @if($user->active)
+				                                    Yes
+			                                    @else
+				                                    No
+			                                    @endif
+		                                    </td>
 	                                        <td align="center">
 		                                        @if($user->id == Auth()->user()->id)
 													Protected
 		                                        @else
-			                                        <a class="btn-sm btn-secondary" href="{{ route('users.edit', $user->id) }}">
+			                                        <a class="btn-sm btn-secondary" href="{{ route('users.edit',
+			                                        $user->id) }}">
 				                                        Edit
 			                                        </a>
 		                                        @endif
