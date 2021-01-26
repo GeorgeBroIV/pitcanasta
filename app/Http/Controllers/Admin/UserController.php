@@ -67,40 +67,6 @@
             $users=User::all();
             return view('admin.user.index', compact('users'));
         }
-    
-        /**
-         * Display a listing of User information.
-         *
-         * Note: the RESTFUL controller methods 'Show', 'Create' and 'Store' are not needed
-         *   since these are handled by Laravel's 'authentication' which has been scaffolded
-         *
-         * Programmatic type-hinting information
-         * @param int $id
-         * @return \Illuminate\Contracts\Support\Renderable
-         */
-        public function show($id)
-        {
-            /* Data to populate User Role view 'rendered table' column header values */
-            // Query the database to obtain Role names
-            $roles = DB::table('roles')
-                       ->select('name', 'Description', 'active')
-                       ->orderBy('order')
-                       ->get();
-
-            $user = User::with('roles')
-                ->where('users.id', '=', $id)
-                ->get();
-            $user = $user[0];
-
-            // User Roles
-            $arrs=User::find($id)->roles()->select('name')->orderBy('order')->get();
-            $userRoles = [];
-            foreach($arrs as $arr) {
-                $q = $arr->name;
-                array_push($userRoles,$q);
-            }
-            return view('admin.user.show', compact('roles', 'user', 'userRoles'));
-        }
 
         /**
          * Show the form for editing the specified resource.
