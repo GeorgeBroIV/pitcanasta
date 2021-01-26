@@ -59,6 +59,5 @@ class Handler extends ExceptionHandler
         } else {
             return redirect()->route('home');
         }
-        return;
     }
 }
