@@ -47,14 +47,18 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
-     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector|void
      */
-    public function render($request, $exception){
+    public function render($request, $exception)
+    {
         if ($exception instanceof TokenMismatchException) {
             return redirect('login')->with(['message' => 'Your session expired due to inactivity, please log back in.']);
-        } elseif(!$this->isHttpException($exception)) {
+        } elseif ($this->isHttpException($exception)) {
+            return parent::render($request, $exception);
+        } elseif (!$this->isHttpException($exception)) {
             $exception = new HttpException(500);
             return parent::render($request, $exception);
         }
+        return;
     }
 }
