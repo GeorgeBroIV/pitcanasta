@@ -54,27 +54,19 @@
 			                                    @endif
 		                                    </td>
 	                                        <td align="center">
-		                                        @if($user->id == Auth()->user()->id)
-													Protected
-		                                        @else
-			                                        <a class="btn-sm btn-secondary" href="{{ route('users.edit',
-			                                        $user->id) }}">
-				                                        Edit
-			                                        </a>
-		                                        @endif
+		                                        <a class="btn-sm btn-primary" href="{{ route('users.show', $user->id)
+		                                        }}">
+			                                        Roles
+		                                        </a>
 	                                        </td>
+				                            <td align="center">
+					                            <a class="btn-sm btn-primary" href="{{ route('users.show', $user->id)
+					                            }}">
+						                            Profiles
+					                            </a>
+				                            </td>
 	                                    </tr>
 	                                @endforeach
-		                            <tr>
-			                            <td colspan="7">
-				                            &nbsp;
-			                            </td>
-		                            </tr>
-		                            <tr>
-			                            <td colspan="7" class="alert-info">
-				                            To edit your own account information, go to 'Account' in your User Menu (upper right).
-			                            </td>
-		                            </tr>
 	                            </table>
 	                        </form>
 	                    </div>

@@ -77,6 +77,7 @@
 								@endif
 							</div>
 							<!-- END - Avatar -->
+							<!-- START - Visible -->
 							<div class="form-group row">
 								<label for="visible" class="col-md-2 col-form-label text-md-right">
 									Visible

@@ -78,23 +78,12 @@
          * @param int $id
          * @return \Illuminate\Http\RedirectResponse
          */
-        public function show()
-        {
-            return redirect()->route('users.index');
-        }
-
-        /**
-         * Show the form for editing the specified resource.
-         *
-         * @return \Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Support\Renderable
-         */
-        public function edit($id)
+        public function show($id)
         {
             /* Data to populate User Role view 'rendered table' column header values */
             // Query the database to obtain Role names
             $userProtect = User::find($id);
             $roles = DB::table('roles')
-                       ->select('name', 'Description', 'active')
                        ->orderBy('order')
                        ->get();
     
@@ -110,19 +99,38 @@
                 $q = $arr->name;
                 array_push($userRoles,$q);
             }
+                return view('admin.user.show', compact('roles', 'user', 'userRoles'));
+        }
 
-            // User cannot edit their own profile via this route
-            if($id == Auth()->user()->id) {
-                return redirect()->route('users.index');
+        /**
+         * Show the form for editing the specified resource.
+         *
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Support\Renderable
+         */
+        public function edit($id)
+        {
+dd($id);
+            /* Data to populate User Role view 'rendered table' column header values */
+            // Query the database to obtain Role names
+            $userProtect = User::find($id);
+            $roles = DB::table('roles')
+                       ->orderBy('order')
+                       ->get();
+    
+            $user = User::with('roles')
+                        ->where('users.id', '=', $id)
+                        ->get();
+            $user = $user[0];
+    
+            // User Roles
+            $arrs=User::find($id)->roles()->select('name')->orderBy('order')->get();
+
+            $userRoles = [];
+            foreach($arrs as $arr) {
+                $q = $arr->name;
+                array_push($userRoles,$q);
             }
-// TODO: Users can't edit Accounts of other users with same or higher Roles
-            // User cannot edit Accounts of users with same or higher Roles
-//            elseif('') {
-//                // Test
-//            }
-            else {
-                return view('admin.user.edit', compact('roles', 'user', 'userRoles'));
-            }
+            return view('admin.user.edit', compact('roles', 'user', 'userRoles'));
         }
     
         /**
@@ -135,9 +143,10 @@
         {
             $model = new User;
             $model = $model->find($request->id);
+            $id = $request->id;
             $this->updateModel($this->modelName, $model, $request);
-            // Once the model is updated, redirect the user to see the list of all Roles
-            return redirect()->route('users.index');
+            // Once the model is updated, redirect the user to the Show view
+            return redirect()->route('users.show', [$model]);
         }
         
         /**

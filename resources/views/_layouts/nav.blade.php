@@ -39,7 +39,7 @@
 										{{ __('Users') }}
 									</a>
 									<a class="dropdown-item" href="{{ route('roles.index') }}">
-										{{ __('User Roles') }}
+										{{ __('Roles') }}
 									</a>
 								</div>
 							</li>

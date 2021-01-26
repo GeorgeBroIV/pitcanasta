@@ -14,17 +14,16 @@
 		                        User Roles
 	                        </span>
 			                <span class="float-lg-right">
-							@if(count($roles) < $rolesMax)
-					                <a class="btn-sm btn-primary" style="color: white; cursor: pointer" href="{{ route
-			                    ('roles.create') }}">
-				                    Create New Role
-			                    </a>
+								@if(count($roles) < $rolesMax)
+					                <a class="btn-sm btn-primary" style="color: white; cursor: pointer" href="{{ route('roles.create') }}">
+				                        Create New Role
+			                        </a>
 				                @else
 					                <div style="color: gray">
-								Maximum: {{ $rolesMax }} Roles
-							</div>
+										Maximum: {{ $rolesMax }} Roles
+									</div>
 				                @endif
-	                    </span>
+	                        </span>
 	                    </div>
 	                    <div class="card-body">
 	                        <form action="{{ route('roles.show', $roles[0]->id) }}" method="get">

@@ -18,28 +18,14 @@
 		Verified
 	</th>
 	<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
-		Verified
+		Active
 	</th>
 
-	<!-- START - Roles -->
-	@if (Route::current()->getName() != 'users.index')
-		<th align="center" style="font-size: medium; padding-left: 10px; padding-right: 10px">
-			Active
-		</th>
-		<th align="center" style="font-size: medium; padding-left: 10px; padding-right: 10px">
-			Visible
-		</th>
-		@foreach($roles as $role)
-			<th align="center" colspan="{ { count($roles) }}"style="font-size: medium; padding-left: 5px; padding-right: 5px">
-                {{ $role->Description }}
-			</th>
-        @endforeach
-	@endif
-	<!-- END - Roles -->
-
-	@if (Route::current()->getName() != 'users.edit')
-		<th align="center" style="font-size: medium; padding-left: 10px; padding-right: 10px">
-            Action
+	@if (Route::current()->getName() == 'users.index')
+		<th colspan="2" style="font-size: medium; padding-left: 10px; padding-right: 10px">
+            <div align="center">
+	            Views
+            </div>
 		</th>
 	@endif
 </tr>
