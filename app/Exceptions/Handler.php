@@ -61,5 +61,6 @@ class Handler extends ExceptionHandler
 // dd("else");
 //            return redirect()->route('home');
         }
+        return;
     }
 }
