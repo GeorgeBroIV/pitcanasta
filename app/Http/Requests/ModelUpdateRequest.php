@@ -43,7 +43,6 @@
             $this->fieldsUnique = $return[0];
             $this->fields = $return[1];
             $this->modelName = $return[2];
-dd($return);
             // Sanitize the Request Input Data
             // $this->sanitizeData();
         }
@@ -90,6 +89,7 @@ dd($return);
                 }
                 $model = rtrim(ucfirst($model), 's');
                 $return = [$fieldsUnique, $fields, $model];
+dd("ModelUpdateRequest->fieldsToProcess", $fields);
                 return $return;
             }
             elseif($methodAction == "update")
