@@ -40,26 +40,4 @@ class Handler extends ExceptionHandler
             //
         });
     }
-    
-    /**
-     * Render an exception into an HTTP response.
-     * https://laracasts.com/discuss/channels/laravel/redirect-to-login-page-after-session-timeout
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector|void
-     */
-    public function render($request, $exception)
-    {
-        if ($exception instanceof TokenMismatchException) {
-            return redirect('login')->with(['message' => 'Your session expired due to inactivity, please log back in.']);
-        }
-        elseif (!$this->isHttpException($exception)) {
-//            $exception = new HttpException(500);
-            return redirect()->back();
-        }
-        else {
-            return redirect()->back();
-        }
-    }
 }
