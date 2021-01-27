@@ -149,14 +149,14 @@
 										</td>
 										<td style="padding-left: 10px; padding-right: 10px">
 											<div align="center">
-												<select id="role.{{ $role->id }}" name="role.{{ $role->id }}" class="form-control-sm form-text">
+												<select id="{{ 'role.' . $role->id }}" name="{{ 'role.' . $role->id }}" class="form-control-sm form-text">
 													@if(in_array($role->name, $userRoles))
 														<option value="1"
 														        {{ old('role.' . $role->id) == 1 ? 'selected' : '' }} selected>
 															Yes
 														</option>
 														<option value="0"
-																{{ old('role.' . $role->id) == 1 ? '' : 'selected' }}>
+																{{ old('role.' . $role->id) == 0 ? '' : 'selected' }}>
 															No
 														</option>
 													@else
@@ -165,7 +165,7 @@
 															Yes
 														</option>
 														<option value="0"
-														        {{ old('role.' . $role->id) == 1 ? '' : 'selected' }} selected>
+														        {{ old('role.' . $role->id) == 0 ? '' : 'selected' }} selected>
 															No
 														</option>
 													@endif
