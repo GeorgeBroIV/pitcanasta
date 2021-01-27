@@ -105,7 +105,12 @@
 									</th>
 								</tr>
 								@foreach($roles as $role)
-									<tr>
+									@if($role->active)
+										<tr>
+									@else
+										<tr style="background-color: lightgrey">
+									@endif
+									
 										<td style="padding-left: 10px; padding-right: 10px">
 											<div>
 												<label for="{{ $role->description }}">
