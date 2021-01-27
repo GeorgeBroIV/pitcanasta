@@ -66,11 +66,23 @@
 		                            <div class="col-md-auto">
 			                            <select id="active" name="active" class="form-control-sm form-text">
 				                            @if(isset($role->active) && $role->active)
-					                            <option value="1" selected>Yes</option>
-					                            <option value="0">No</option>
+					                            <option value="1"
+					                                    {{ old('active') == 1 ? 'selected' : '' }} selected>
+						                            Yes
+					                            </option>
+					                            <option value="0"
+					                                    {{ old('active') == 0 ? 'selected' : '' }}>
+						                            No
+					                            </option>
 				                            @else
-					                            <option value="1">Yes</option>
-					                            <option value="0" selected>No</option>
+					                            <option value="1"
+					                                    {{ old('active') == 1 ? 'selected' : '' }}>
+						                            Yes
+					                            </option>
+					                            <option value="0"
+					                                    {{ old('active') == 0 ? 'selected' : '' }} selected>
+						                            No
+					                            </option>
 				                            @endif
 			                            </select>
 		                            </div>
@@ -85,11 +97,23 @@
 			                            <div class="col-md-auto">
 				                            <select id="protect" name="protect" class="form-control-sm form-text">
 					                            @if(isset($role->protect) && $role->protect)
-						                            <option value="1" selected>Yes</option>
-						                            <option value="0">No</option>
+						                            <option value="1"
+						                                    {{ old('active') == 1 ? 'selected' : '' }} selected>
+							                            Yes
+						                            </option>
+						                            <option value="0"
+								                            {{ old('active') == 0 ? 'selected' : '' }}>
+							                            No
+						                            </option>
 					                            @else
-						                            <option value="1">Yes</option>
-						                            <option value="0" selected>No</option>
+						                            <option value="1"
+								                            {{ old('active') == 1 ? 'selected' : '' }}>
+							                            Yes
+						                            </option>
+						                            <option value="0"
+						                                    {{ old('active') == 0 ? 'selected' : '' }} selected>
+							                            No
+						                            </option>
 					                            @endif
 				                            </select>
 			                            </div>

@@ -48,11 +48,23 @@
 									<td style="padding: 10px" align="center">
 										<select id="visible" name="visible" class="form-control-sm form-text">
 											@if($user->active)
-												<option value="1" selected>Yes</option>
-												<option value="0">No</option>
+												<option value="1"
+												        {{ old('active') == 1 ? 'selected' : '' }} selected>
+													Yes
+												</option>
+												<option value="0"
+												        {{ old('active') == 0 ? 'selected' : '' }}>
+													No
+												</option>
 											@else
-												<option value="1">Yes</option>
-												<option value="0" selected>No</option>
+												<option value="1"
+												        {{ old('active') == 1 ? 'selected' : '' }}>
+													Yes
+												</option>
+												<option value="0"
+												        {{ old('active') == 0 ? 'selected' : '' }} selected>
+													No
+												</option>
 											@endif
 										</select>
 									</td>
@@ -140,11 +152,23 @@
 											<div align="center">
 												<select id="visible" name="visible" class="form-control-sm form-text">
 													@if(in_array($role->name, $userRoles))
-														<option value="1" selected>Yes</option>
-														<option value="0">No</option>
+														<option value="1"
+														        {{ old('active') == 1 ? 'selected' : '' }} selected>
+															Yes
+														</option>
+														<option value="0"
+														        {{ old('active') == 0 ? 'selected' : '' }}>
+															No
+														</option>
 													@else
-														<option value="1">Yes</option>
-														<option value="0" selected>No</option>
+														<option value="1"
+														        {{ old('active') == 1 ? 'selected' : '' }}>
+															Yes
+														</option>
+														<option value="0"
+														        {{ old('active') == 0 ? 'selected' : '' }} selected>
+															No
+														</option>
 													@endif
 												</select>
 											</div>
