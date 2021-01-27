@@ -63,7 +63,7 @@
 									                    Yes
 								                    </option>
 								                    <option value="0"
-										                    {{ old('active') == 0 ? 'selected' : '' }}>
+										                    {{ old('active') == 0 ? '' : 'selected' }}>
 								                        No
 								                    </option>
 							                    @else
@@ -72,7 +72,7 @@
 									                    Yes
 								                    </option>
 								                    <option value="0"
-										                    {{ old('active') == 0 ? 'selected' : '' }} selected>
+										                    {{ old('active') == 0 ? '' : 'selected' }} selected>
 									                    No
 								                    </option>
 							                    @endif
@@ -103,25 +103,25 @@
 							                    {{ $role->description }}
 						                    </label>
 						                    <div class="col-md-auto">
-							                    <select id="{{ $role->name }}" name="{{ $role->name }}"
+							                    <select id="{{ 'role.' . $role->id }}" name="{{ 'role.' . $role->id }}"
 							                            class="form-control-sm
 							                    form-text">
 								                    @if(in_array($role->name, $userRoles))
 									                    <option value="1"
-									                            {{ old('active') == 1 ? 'selected' : '' }} selected>
+									                            {{ old('role.' . $role->id) == 1 ? 'selected' : '' }} selected>
 										                    Yes
 									                    </option>
 									                    <option value="0"
-									                            {{ old('active') == 0 ? 'selected' : '' }}>
+									                            {{ old('role.' . $role->id) == 0 ? '' : 'selected' }}>
 										                    No
 									                    </option>
 								                    @else
 									                    <option value="1"
-									                            {{ old('active') == 1 ? 'selected' : '' }}>
+									                            {{ old('role.' . $role->id) == 1 ? 'selected' : '' }}>
 										                    Yes
 									                    </option>
 									                    <option value="0"
-									                            {{ old('active') == 0 ? 'selected' : '' }} selected>
+									                            {{ old('role.' . $role->id) == 0 ? '' : 'selected' }} selected>
 										                    No
 									                    </option>
 								                    @endif

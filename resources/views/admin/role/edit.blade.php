@@ -71,7 +71,7 @@
 						                            Yes
 					                            </option>
 					                            <option value="0"
-					                                    {{ old('active') == 0 ? 'selected' : '' }}>
+					                                    {{ old('active') == 0 ? '' : 'selected' }}>
 						                            No
 					                            </option>
 				                            @else
@@ -80,7 +80,7 @@
 						                            Yes
 					                            </option>
 					                            <option value="0"
-					                                    {{ old('active') == 0 ? 'selected' : '' }} selected>
+					                                    {{ old('active') == 0 ? '' : 'selected' }} selected>
 						                            No
 					                            </option>
 				                            @endif
@@ -102,7 +102,7 @@
 							                            Yes
 						                            </option>
 						                            <option value="0"
-								                            {{ old('active') == 0 ? 'selected' : '' }}>
+								                            {{ old('active') == 0 ? '' : 'selected' }}>
 							                            No
 						                            </option>
 					                            @else
@@ -111,7 +111,7 @@
 							                            Yes
 						                            </option>
 						                            <option value="0"
-						                                    {{ old('active') == 0 ? 'selected' : '' }} selected>
+						                                    {{ old('active') == 0 ? '' : 'selected' }} selected>
 							                            No
 						                            </option>
 					                            @endif

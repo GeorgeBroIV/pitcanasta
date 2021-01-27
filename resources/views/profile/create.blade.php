@@ -70,11 +70,11 @@
 								<div class="col-md-auto">
 									<select id="visible" name="visible" class="form-control-sm form-text">
 										<option value="1"
-										        {{ old('active') == 1 ? 'selected' : '' }} selected>
+										        {{ old('visible') == 1 ? 'selected' : '' }} selected>
 											Yes
 										</option>
 										<option value="0"
-												{{ old('active') == 0 ? 'selected' : '' }}>
+												{{ old('visible') == 0 ? '' : 'selected' }}>
 											No
 										</option>
 									</select>
