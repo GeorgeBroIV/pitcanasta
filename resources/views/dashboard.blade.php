@@ -14,81 +14,51 @@
 						messageboard messages since your last visit; etc.
 					</div>
 					<div class="card-body">
-						<table align="center">
-							<tr>
+						<table style="padding-left: 50px">
+							<tr style="vertical-align: top">
 								<td style="padding-right: 20px">
 									<!-- START - User Roles -->
-									<table class="table-bordered">
+									<table class="table-borderless">
 										<tr>
-											<th style="font-size: medium; padding: 10px">
+											<th style="font-size: medium; padding-left: 10px; padding-right: 10px; padding-top: 5px;
+										padding-bottom: 5px">
 												User Status
 											</th>
-											<th style="font-size: medium; padding: 10px">
-												No.
-											</th>
 										</tr>
 										<tr>
 											<td style="padding-left: 10px; padding-right: 10px; padding-top: 5px;
 										padding-bottom: 5px">
-												Registered Users
-											</td>
-											<td style="padding-left: 10px; padding-right: 10px; padding-top: 5px;
-										padding-bottom: 5px">
-												<div align="center">
-													{{ $userCount }}
-												</div>
+												Registered Users:&nbsp; {{ $userCount }}
 											</td>
 										</tr>
 										<tr>
 											<td style="padding-left: 10px; padding-right: 10px; padding-top: 5px;
 										padding-bottom: 5px">
-												Verified Users
-											</td>
-											<td style="padding-left: 10px; padding-right: 10px; padding-top: 5px;
-										padding-bottom: 5px">
-												<div align="center">
-													{{ $usersVerifiedCount }}
-												</div>
+												Verified Users:&nbsp; {{ $usersVerifiedCount }}
 											</td>
 										</tr>
 										<tr>
 											<td style="padding-left: 10px; padding-right: 10px; padding-top: 5px;
 										padding-bottom: 5px">
-												Invisible Users
-											</td>
-											<td style="padding-left: 10px; padding-right: 10px; padding-top: 5px;
-										padding-bottom: 5px">
-												<div align="center">
-													{{ $usersInvisibleCount }}
-												</div>
+												Invisible Users:&nbsp; {{ $usersInvisibleCount }}
 											</td>
 										</tr>
 									</table>
 								</td>
 								<td style="padding-left: 20px">
 									<!-- START - User Roles -->
-									<table class="table-bordered">
+									<table class="table-borderless">
 										<tr>
-											<th style="font-size: medium; padding: 10px">
-												Users with Role
-											</th>
-											<th style="font-size: medium; padding: 10px">
-												<div align="center">
-													No.
-												</div>
+											<th style="font-size: medium; padding-left: 10px; padding-right: 10px; padding-top: 5px;
+										padding-bottom: 5px">
+												Users with Roles
 											</th>
 										</tr>
 										@foreach($roleCounts as $key => $roleCount)
 											<tr>
 												<td style="padding-left: 10px; padding-right: 10px; padding-top: 5px;
 										padding-bottom: 5px">
-													{{ $key }}s
-												</td>
-												<td style="padding-left: 10px; padding-right: 10px; padding-top: 5px;
-										padding-bottom: 5px">
-													<div align="center">
-														{{ $roleCount }}
-													</div>
+													{{ $key }}s:&nbsp; {{ $roleCount }}
 												</td>
 											</tr>
 										@endforeach
