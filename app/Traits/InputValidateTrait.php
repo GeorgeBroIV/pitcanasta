@@ -59,7 +59,7 @@
                             $rules[$field] = 'boolean';
                             break;
                         case 'notes':
-                            $rules[$field] = 'nullable|max:100|regex:/^[A-Z][a-zA-Z0-9. _-]+$/';
+                            $rules[$field] = 'nullable|max:100|regex:/^[A-Z][a-zA-Z0-9.!\' _-]+$/';
                             break;
                     }
                 }
@@ -84,7 +84,7 @@
                             $rules[$field] = 'boolean';
                             break;
                         case 'notes':
-                            $rules[$field] = 'nullable|max:100|regex:/^[A-Z][a-zA-Z0-9. _-]+$/';
+                            $rules[$field] = 'nullable|max:100|regex:/^[A-Z][a-zA-Z0-9.!\' _-]+$/';
                             break;
                     }
                 }
@@ -106,7 +106,7 @@
                             $rules[$field] = 'boolean';
                             break;
                         case 'notes':
-                            $rules[$field] = 'nullable|max:100|regex:/^[A-Z][a-zA-Z0-9. _-]+$/';
+                            $rules[$field] = 'nullable|max:100|regex:/^[A-Z][a-zA-Z0-9.!\' _-]+$/';
                             break;
                     }
                 }
