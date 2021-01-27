@@ -98,20 +98,20 @@
 				                            <select id="protect" name="protect" class="form-control-sm form-text">
 					                            @if(isset($role->protect) && $role->protect)
 						                            <option value="1"
-						                                    {{ old('active') == 1 ? 'selected' : '' }} selected>
+						                                    {{ old('protect') == 1 ? 'selected' : '' }} selected>
 							                            Yes
 						                            </option>
 						                            <option value="0"
-								                            {{ old('active') == 0 ? '' : 'selected' }}>
+								                            {{ old('protect') == 0 ? '' : 'selected' }}>
 							                            No
 						                            </option>
 					                            @else
 						                            <option value="1"
-								                            {{ old('active') == 1 ? 'selected' : '' }}>
+								                            {{ old('protect') == 1 ? 'selected' : '' }}>
 							                            Yes
 						                            </option>
 						                            <option value="0"
-						                                    {{ old('active') == 0 ? '' : 'selected' }} selected>
+						                                    {{ old('protect') == 0 ? '' : 'selected' }} selected>
 							                            No
 						                            </option>
 					                            @endif
