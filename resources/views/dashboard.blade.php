@@ -14,7 +14,7 @@
 						messageboard messages since your last visit; etc.
 					</div>
 					<div class="card-body">
-						<table style="padding-left: 50px">
+						<table style="padding-left: 70px">
 							<tr style="vertical-align: top">
 								<td style="padding-right: 35px">
 									<!-- START - User Roles -->
