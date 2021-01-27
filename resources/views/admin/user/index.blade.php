@@ -53,13 +53,13 @@
 				                                    No
 			                                    @endif
 		                                    </td>
-	                                        <td align="center">
+	                                        <td align="center" style="padding-left: 5px; padding-right: 5px">
 		                                        <a class="btn-sm btn-primary" href="{{ route('users.show', $user->id)
 		                                        }}">
 			                                        Roles
 		                                        </a>
 	                                        </td>
-				                            <td align="center">
+				                            <td align="center" style="padding-left: 5px; padding-right: 5px">
 					                            <a class="btn-sm btn-primary" href="{{ route('users.show', $user->id)
 					                            }}">
 						                            Profiles
