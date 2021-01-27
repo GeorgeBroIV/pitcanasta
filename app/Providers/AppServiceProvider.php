@@ -64,8 +64,8 @@ class AppServiceProvider extends ServiceProvider
         });
     
         // Role: Reviewer
-        Blade::if('isReviewer', function () {
-            return auth()->check() && auth()->user()->hasRole('Reviewer');
+        Blade::if('isModerator', function () {
+            return auth()->check() && auth()->user()->hasRole('Moderator');
         });
 
         // Verified

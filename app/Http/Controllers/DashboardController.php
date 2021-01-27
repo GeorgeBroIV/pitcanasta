@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Auth\User;
+use App\Models\Auth\Role;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -37,7 +38,14 @@ class DashboardController extends Controller
         // Get 'Invisible Users' count
         $usersInvisible = $users->where('visible', '=', false);
         $usersInvisibleCount = count($usersInvisible);
+    
+        // Get 'Admin Users' count
+        $arrs = Role::withCount('users')->get();
+        $roleCounts = [];
+        foreach($arrs as $arr) {
+            $roleCounts[$arr->description] = $arr->users_count;
+        }
         
-        return view('dashboard', compact('user', 'userCount', 'usersVerifiedCount', 'usersInvisibleCount'));
+        return view('dashboard', compact('user', 'userCount', 'usersVerifiedCount', 'usersInvisibleCount', 'roleCounts'));
     }
 }

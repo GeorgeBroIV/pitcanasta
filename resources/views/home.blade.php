@@ -46,7 +46,7 @@
 					at_isAdmin
 						<p>
 							As an Admin you have full access to all capabilities of this website, including all permissions granted
-							to 'Reviewer' and 'Verified' users.
+							to 'Moderator' and 'Verified' users.
 						</p>
 					at_else
 						at_isVerified
