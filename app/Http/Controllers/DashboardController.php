@@ -40,7 +40,7 @@ class DashboardController extends Controller
         $usersInvisibleCount = count($usersInvisible);
     
         // Get 'Admin Users' count
-        $arrs = Role::withCount('users')->get();
+        $arrs = Role::withCount('users')->where('active', '=', true)->get();
         $roleCounts = [];
         foreach($arrs as $arr) {
             $roleCounts[$arr->description] = $arr->users_count;

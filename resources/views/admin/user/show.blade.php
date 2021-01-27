@@ -15,7 +15,7 @@
 	                    </span>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('users.edit', $user->id) }}" method="get">
+						<form action="{{ route('users.index', $user->id) }}" method="get">
 							<div>
 							@method('put')
 							@csrf
