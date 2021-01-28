@@ -15,8 +15,7 @@
 	                        Web Application Accounts
 	                    </div>
 	                    <div class="card-body">
-	                        <form action="{{ route('users.update', $users[0]->id) }}" method="get">
-	                            @method('put')
+	                        <form action="{{ route('users.show', $users[0]->id) }}" method="GET">
 	                            @csrf
 	                            <table>
 	                                @include('admin.user.tablehead')
@@ -56,23 +55,9 @@
 			                                    @endif
 		                                    </td>
 	                                        <td align="center" style="padding-left: 5px; padding-right: 5px">
-		                                        <a class="btn-sm btn-primary" href="{{ route('users.show', $user->id)
-		                                        }}">
-			                                        Roles
+		                                        <a href="{{ route('users.show', $user->id.'-Index') }}" class="btn-sm btn-primary">
+			                                        Edit
 		                                        </a>
-	                                        </td>
-				                            <td align="center" style="padding-left: 5px; padding-right: 5px">
-					                            <a class="btn-sm btn-primary" href="{{ route('users.show', $user->id)
-					                            }}">
-						                            Profiles
-					                            </a>
-				                            </td>
-				                            <td align="center" style="padding-left: 5px; padding-right: 5px">
-					                            <a class="btn-sm btn-primary" href="{{ route('users.show', $user->id)
-				                            }}">
-						                            Messages
-					                            </a>
-				                            </td>
 	                                    </tr>
 	                                @endforeach
 	                            </table>

@@ -22,7 +22,7 @@
 	</th>
 
 	@if (Route::current()->getName() == 'users.index')
-		<th colspan="3" style="font-size: medium; padding-left: 10px; padding-right: 10px">
+		<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
             <div align="center">
 	            User Info
             </div>

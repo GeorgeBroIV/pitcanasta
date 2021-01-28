@@ -78,28 +78,15 @@
          * @param int $id
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
          */
-        public function show($id)
+        public function show($request)
         {
-            /* Data to populate User Role view 'rendered table' column header values */
-            // Query the database to obtain Role names
-            $userProtect = User::find($id);
-            $roles = DB::table('roles')
-                       ->orderBy('order')
-                       ->get();
-    
-            $user = User::with('roles')
-                        ->where('users.id', '=', $id)
-                        ->get();
-            $user = $user[0];
-    
-            // User Roles
-            $arrs=User::find($id)->roles()->select('name')->orderBy('order')->get();
-            $userRoles = [];
-            foreach($arrs as $arr) {
-                $q = $arr->name;
-                array_push($userRoles,$q);
+            $id = (int) substr($request, 0, strpos($request, '-'));
+            $model = ucfirst(substr($request, strpos($request, '-') + 1));
+            if($model == 'Index') {
+                $model = 'Role';
             }
-                return view('admin.user.show', compact('roles', 'user', 'userRoles'));
+            $user = User::find($id);
+            return view('admin.user.show', compact('model', 'user'));
         }
 
         /**

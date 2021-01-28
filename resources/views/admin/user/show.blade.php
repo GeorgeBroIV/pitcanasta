@@ -19,7 +19,6 @@
 					<div class="card-body">
 						<form action="{{ route('users.index', $user->id) }}" method="get">
 							<div>
-							@method('put')
 							@csrf
 							<!-- START - User Information -->
 							<table>
@@ -75,7 +74,7 @@
 								<tr style="padding-top: 10px; border-bottom: 1px solid lightgray">
 									<th align="middle" style="font-size: medium; padding: 10px">
 										<label for="notes">
-											Notes
+											Admin Notes
 										</label>
 									</td>
 									<td colspan="6" style="padding: 10px">
@@ -88,94 +87,55 @@
 							</div>
 							<br>
 							<!-- END - User Information -->
-							<!-- START - User Roles -->
+							
+							&nbsp;&nbsp;
+							<span>
+								@if($model == 'Role')
+									<span>
+										Roles
+									</span>
+								@else
+									<a href="{{ route('users.show', $user->id.'-role') }}" class="btn-sm btn-primary">
+										Roles
+									</a>
+								@endif
+							</span>
+							&nbsp;&nbsp;
+							<span>
+								@if($model == 'Profile')
+									<span>
+										Profiles
+									</span>
+								@else
+									<a href="{{ route('users.show', $user->id.'-profile') }}" class="btn-sm btn-primary">
+										Profiles
+									</a>
+								@endif
+							</span>
+							&nbsp;&nbsp;
+							<span>
+								@if($model == 'Message')
+									<span>
+										Messages
+									</span>
+								@else
+									<a href="{{ route('users.show', $user->id.'-message') }}" class="btn-sm btn-primary">
+										Messages
+									</a>
+								@endif
+							</span>
+							<hr>
+							<!-- START - User Data -->
 							<div class="card-header" style="font-size: medium">
 			                    <span>
-									Roles assigned to {{ $user->username }}
+									{{ $user->username }}'s {{ $model }}s
 			                    </span>
 							</div>
 							<table class="table" align="center">
-								<tr>
-									<th style="font-size: medium; padding-left: 10px; padding-right:
-									10px">
-										<div>
-											Role
-										</div>
-									</th>
-									<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
-										<div align="center">
-											Active
-										</div>
-									</th>
-									<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
-										<div>
-											Notes
-										</div>
-									</th>
-									<th style="font-size: medium; padding-left: 10px; padding-right: 10px">
-										<div align="center">
-											Assigned
-										</div>
-									</th>
-								</tr>
-								@foreach($roles as $role)
-									@if($role->active)
-										<tr>
-									@else
-										<tr style="background-color: lightgrey">
-									@endif
-										<td style="padding-left: 10px; padding-right: 10px">
-											<div>
-												<label for="{{ $role->description }}">
-													{{ $role->description }}
-												</label>
-											</div>
-										</td>
-										<td style="padding-left: 10px; padding-right: 10px">
-											<div align="center">
-												<label for="{{ $role->active }}">
-													@if($role->active)
-														Yes
-													@else
-														No
-													@endif
-												</label>
-											</div>
-										</td>
-										<td style="padding-left: 10px; padding-right: 10px; max-width: 550px">
-											<div align="left">
-												<label for="{{ $role->notes }}">
-													{{ $role->notes }}
-												</label>
-											</div>
-										</td>
-										<td style="padding-left: 10px; padding-right: 10px">
-											<div align="center">
-												<select id="{{ 'role.' . $role->id }}" name="{{ 'role.' . $role->id }}" class="form-control-sm form-text">
-													@if(in_array($role->name, $userRoles))
-														<option value="1"
-														        {{ old('role.' . $role->id) == 1 ? 'selected' : '' }} selected>
-															Yes
-														</option>
-														<option value="0"
-																{{ old('role.' . $role->id) == 0 ? '' : 'selected' }}>
-															No
-														</option>
-													@else
-														<option value="1"
-																{{ old('role.' . $role->id) == 1 ? 'selected' : '' }}>
-															Yes
-														</option>
-														<option value="0"
-														        {{ old('role.' . $role->id) == 0 ? '' : 'selected' }} selected>
-															No
-														</option>
-													@endif
-												</select>
-											</div>
-										</td>
-									</tr>
-								@endforeach
+							
+							<!-- START - User Data -->
+								<x-dataview modelName="{{ $model }}"  id="{{ $user->id }}"/>
+							<!-- END - User Data -->
 							</table>
 							<!-- END - User Roles -->
 							<hr>
@@ -186,7 +146,7 @@
 		                            </button>
 	                            </span>
 								<span style="padding-left: 5px; padding-right: 5px">
-		                            <a href="{{ route('users.show', $user->id) }}" class="btn-sm btn-secondary">
+		                            <a href="{{ route('users.show', [$user->id . '-' . $model]) }}" class="btn-sm btn-secondary">
 			                            Reset Values
 		                            </a>
                                 </span>
