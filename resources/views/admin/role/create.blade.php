@@ -1,5 +1,7 @@
 @extends('_layouts.app')
 
+@section('title', 'Admin - Create Role')
+
 @section('content')
 	@isAdmin
 	<div class="container">

@@ -76,7 +76,7 @@
          *
          * Programmatic type-hinting information
          * @param int $id
-         * @return \Illuminate\Http\RedirectResponse
+         * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
          */
         public function show($id)
         {
@@ -109,28 +109,7 @@
          */
         public function edit($id)
         {
-dd($id);
-            /* Data to populate User Role view 'rendered table' column header values */
-            // Query the database to obtain Role names
-            $userProtect = User::find($id);
-            $roles = DB::table('roles')
-                       ->orderBy('order')
-                       ->get();
-    
-            $user = User::with('roles')
-                        ->where('users.id', '=', $id)
-                        ->get();
-            $user = $user[0];
-    
-            // User Roles
-            $arrs=User::find($id)->roles()->select('name')->orderBy('order')->get();
-
-            $userRoles = [];
-            foreach($arrs as $arr) {
-                $q = $arr->name;
-                array_push($userRoles,$q);
-            }
-            return view('admin.user.edit', compact('roles', 'user', 'userRoles'));
+            return redirect()->route('users.index');
         }
     
         /**

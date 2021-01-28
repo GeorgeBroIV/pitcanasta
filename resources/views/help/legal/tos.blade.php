@@ -1,5 +1,7 @@
 @extends('_layouts.app')
 
+@section('title', 'Terms of Service')
+
 @section('content')
     <div class="container">
         <div class="row justify-content">

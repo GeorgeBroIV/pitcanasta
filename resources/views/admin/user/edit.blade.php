@@ -1,5 +1,7 @@
 @extends('_layouts.app')
 
+@section('title', 'Admin - Edit Accounts')
+
 @section('content')
     @isAdmin
         <div class="container">
@@ -10,7 +12,7 @@
 	                </div>
                     <div class="card">
 	                    <div class="card-header" style="font-size: medium">
-                            Edit {{ $user->username }}'s Main Profile Settings
+                            Edit {{ $user->username }}'s Main Account Settings
                         </div>
 	                    <div class="col-16">
 		                    @if ($errors->any())

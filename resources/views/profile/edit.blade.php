@@ -1,5 +1,7 @@
 @extends('_layouts.app')
 
+@section('title', 'Edit Profile')
+
 @section('content')
 	@isVerified
 	<div class="container">

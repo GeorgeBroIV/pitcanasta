@@ -1,6 +1,6 @@
 <div class="container">
 	<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-		@if (Route::current()->getName() != 'welcome')
+		@if (Route::current() == null || Route::current()->getName() != 'welcome')
 			<!-- WebApp Logo - link to homepage -->
 			<a class="navbar-brand" href="{{ url('/welcome') }}">
 				<img src="{{ asset('storage/website/images/PitCanasta_TopLogo.svg') }}" height="50px">
@@ -53,19 +53,22 @@
 				<ul class="navbar-nav ml-auto">
 				<!-- START - Guest Section (Login/Register) -->
 					@guest
-						@if (Route::current()->getName() != 'login')
-							<li class="nav-item">
-								<a class="nav-link" href="{{ route('login') }}">
-									{{ __('Login') }}
-								</a>
-							</li>
-						@else
-							<li class="nav-item">
-								<a class="nav-link" href="{{ route('register') }}">
-									{{ __('Sign Up') }}
-								</a>
-							</li>
-						@endif
+						@if (Route::current() != null)
+								@if (Route::current()->getName() != 'login')
+								<li class="nav-item">
+									<a class="nav-link" href="{{ route('login') }}">
+										{{ __('Login') }}
+									</a>
+								</li>
+							@else
+								<li class="nav-item">
+									<a class="nav-link" href="{{ route('register') }}">
+										{{ __('Sign Up') }}
+									</a>
+								</li>
+							@endif
+					@endif
+					
 					@endguest
 				<!-- END - Guest Section -->
 				<!-- START - Registered Section (Social Login / WebApp Logout) -->

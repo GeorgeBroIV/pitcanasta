@@ -1,5 +1,7 @@
 @extends('_layouts.app')
 
+@section('title', 'Admin - Accounts')
+
 @section('content')
     @isAdmin
 	    <div class="container">
@@ -10,7 +12,7 @@
 		            </div>
 	                <div class="card">
 		                <div class="card-header" style="font-size: medium">
-	                        Web Application Users
+	                        Web Application Accounts
 	                    </div>
 	                    <div class="card-body">
 	                        <form action="{{ route('users.update', $users[0]->id) }}" method="get">
@@ -63,6 +65,12 @@
 					                            <a class="btn-sm btn-primary" href="{{ route('users.show', $user->id)
 					                            }}">
 						                            Profiles
+					                            </a>
+				                            </td>
+				                            <td align="center" style="padding-left: 5px; padding-right: 5px">
+					                            <a class="btn-sm btn-primary" href="{{ route('users.show', $user->id)
+				                            }}">
+						                            Messages
 					                            </a>
 				                            </td>
 	                                    </tr>
